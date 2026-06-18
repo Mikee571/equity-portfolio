@@ -1,7 +1,3 @@
-# Marcelo Renere — Equity Research & Quantitative Finance Portfolio
-
-CFA Level I Candidate | Financial Analyst | Equity Research & Valuation
-
 This repository documents the analytical framework I use to manage my personal equity
 portfolio and a tactical macro allocation sleeve. It is built to be transparent and
 reproducible: every stock pitch is backed by the same screening methodology, and every
@@ -52,8 +48,3 @@ full writeups.
 This repository reflects personal research and is not investment advice. Figures are
 based on publicly available data at the time of writing and may not reflect current
 market conditions.
-
-## Contact
-
-- LinkedIn: [marcelo-renere](https://www.linkedin.com/in/marcelo-renere/)
-- Email: mrenere@student.eae.es
