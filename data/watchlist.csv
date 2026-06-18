@@ -1,0 +1,4 @@
+ticker,name,pe_ratio,roe,debt_to_equity,free_cash_flow,peg_ratio,score,verdict
+XOM,Exxon Mobil Corporation,23.693604,0.09873,0.18261,11630499840.0,1.1774,3,PASS
+BMW.DE,Bayerische Motoren Werke Aktiengesellschaft,5.5621095,0.0709,1.12684,2344892928.0,0.4311,3,PASS
+JPM,JPMorgan Chase & Co.,15.962662,0.16465001,,,1.7578,1,REJECT
