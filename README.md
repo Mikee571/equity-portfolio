@@ -1,50 +1,45 @@
-This repository documents the analytical framework I use to manage my personal equity
-portfolio and a tactical macro allocation sleeve. It is built to be transparent and
-reproducible: every stock pitch is backed by the same screening methodology, and every
-number in the model can be traced back to its source.
+# Marcelo Renere: investment research
 
-## Why this repository exists
+Ingeniería Comercial and MSc in Finance (Universidad Adolfo Ibáñez) · Master in Big Data & Data Science (Universidad Complutense de Madrid) · Master in Finance (EAE Business School) · CFA Level I candidate
 
-Most of what I do in equity analysis doesn't show up on a CV bullet point. This is the
-evidence layer: the actual screening code, the actual valuation models, and the actual
-investment theses behind the "Personal Equity Portfolio Management" line on my resume.
+I studied finance twice and data science once, and this repository is where the two meet. It's the research I do on my own time. I'm starting with the equity screener I run every week and will add the rest (company valuations, an SQL project on SEC filings, and the systematic strategies I tested) as I tidy each one up.
 
-## Structure
+## Equity screener
+
+[`equity-screener/`](equity-screener) is a five-factor screen (P/E, ROE, D/E, FCF yield, PEG) over US and European stocks.
+
+- It validates the data before scoring, keeps a history of each run and sends the results to Telegram.
+- It has a point-in-time US backtest for 2012–2026, rebuilt from first-reported SEC XBRL filings so it only uses numbers that were public at the time. I calibrated it against TradingView and checked it for survivorship bias.
+- A weight-robustness study checks whether the result depends on how the five factors are weighted.
+
+The honest result: the top 10 beat the equal-weight universe by about 3% a year, with a t-stat around 1. That's not enough to call it an edge. The folder README has the full numbers and the caveats.
+
+## How I test things
+
+1. Write the rule and the pass criterion down before looking at results.
+2. Use point-in-time data and walk-forward or out-of-sample periods.
+3. Charge realistic costs and compare against a fair benchmark: buy and hold, the equal-weight universe, the same average exposure, or random timing.
+4. Report confidence intervals and subperiods, not just the headline number.
+5. If it fails, archive it with the evidence instead of tweaking it until it passes.
+
+## Running the code
+
+Python 3.11+.
 
 ```
-.
-├── models/
-│   └── fundamental_screener.py     # P/E, ROE, FCF, Debt/Equity, PEG screening framework
-├── stock_pitches/
-│   └── TEMPLATE_stock_pitch.md     # Format used for every position in the portfolio
-├── data/
-│   └── watchlist.csv               # Tracked tickers and current screening scores
-└── README.md
+pip install -r equity-screener/requirements.txt -r equity-screener/requirements-backtest.txt
 ```
 
-## Methodology
+Market data is downloaded from Yahoo Finance and SEC EDGAR on the first run and cached locally; it isn't included in the repo. The backtest needs a `SEC_USER_AGENT` in `equity-screener/.env` (see `.env.example`). The folder README has the exact commands.
 
-Every position in the portfolio is screened against five criteria before entry:
+## Tools
 
-| Metric | What it measures | Threshold I look for |
-|---|---|---|
-| P/E | Price paid per unit of earnings | < 15x value names, < 25x growth names |
-| ROE | Profitability relative to equity capital | > 15% |
-| Debt/Equity | Balance sheet leverage | < 1.0, ideally < 0.5 |
-| Free Cash Flow | Real cash generated after capex | Positive and growing |
-| PEG ratio | P/E adjusted for growth | < 1.5 |
-
-No position is added without a written thesis (see `stock_pitches/`) covering the bull
-case, the bear case, and the specific catalysts that would change my position size.
-
-## Current focus
-
-Active names under coverage: JPMorgan Chase (JPM), ExxonMobil (XOM), BMW (BMW.DE).
-See `data/watchlist.csv` for the latest screening output and `stock_pitches/` for
-full writeups.
+Python (pandas, statsmodels), SEC EDGAR and Yahoo Finance data. I use Claude as a coding and writing assistant; the questions, the test designs and the calls on what to keep or drop are mine.
 
 ## Disclaimer
 
-This repository reflects personal research and is not investment advice. Figures are
-based on publicly available data at the time of writing and may not reflect current
-market conditions.
+Personal research. Nothing here is investment advice, and backtested results don't predict future returns.
+
+## Contact
+
+[LinkedIn](https://www.linkedin.com/in/marcelo-renere/) · mrenere@student.eae.es

@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# Output artifacts (screener runs)
+output/*.xlsx
+logs/*.log
+data/screener_history.csv
+
+# Backtest caches (SEC bulk download ~1.4 GB, prices, snapshots)
+data/sec/
+data/backtest/
+
+# Environment variables
+.env
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Jupyter
+.ipynb_checkpoints/
