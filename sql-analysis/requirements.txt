@@ -1,0 +1,5 @@
+# sql-analysis/ (DuckDB over SEC XBRL filings)
+duckdb>=1.0
+pandas>=2.0
+tabulate>=0.9
+matplotlib>=3.7

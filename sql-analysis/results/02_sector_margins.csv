@@ -1,0 +1,19 @@
+sector,typical_margin,worst_year_margin,worst_year,best_year_margin,best_year,cyclicality,avg_companies
+Utilities,0.184,0.168,2012,0.217,2025,0.016,49.0
+Consumer Non-Durables,0.117,0.08,2025,0.137,2013,0.015,61.0
+Consumer Services,0.114,0.019,2020,0.135,2016,0.029,90.0
+Energy Minerals,0.105,-0.495,2020,0.385,2022,0.25,39.0
+Producer Manufacturing,0.099,0.089,2015,0.116,2024,0.008,130.0
+Process Industries,0.095,0.041,2025,0.111,2013,0.016,68.0
+Health Technology,0.093,0.026,2024,0.128,2012,0.033,114.0
+Non-Energy Minerals,0.089,0.048,2015,0.138,2021,0.024,26.0
+Commercial Services,0.088,0.058,2020,0.1,2012,0.011,72.0
+Electronic Technology,0.085,0.063,2024,0.112,2018,0.013,122.0
+Consumer Durables,0.075,0.046,2025,0.093,2021,0.011,51.0
+Transportation,0.072,0.035,2020,0.095,2015,0.015,42.0
+Communications,0.068,0.023,2022,0.11,2016,0.027,16.0
+Health Services,0.056,0.039,2022,0.072,2018,0.009,34.0
+Industrial Services,0.056,0.028,2020,0.091,2024,0.018,62.0
+Retail Trade,0.046,0.039,2019,0.086,2014,0.014,80.0
+Technology Services,0.04,-0.038,2022,0.11,2013,0.043,173.0
+Distribution Services,0.032,0.027,2015,0.056,2022,0.008,41.0
