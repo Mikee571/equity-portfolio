@@ -2,7 +2,7 @@
 
 Ingeniería Comercial and MSc in Finance (Universidad Adolfo Ibáñez) · Master in Big Data & Data Science (Universidad Complutense de Madrid) · Master in Finance (EAE Business School) · CFA Level I candidate
 
-I studied finance twice and data science once, and this repository is where the two meet. It's the research I do on my own time: company valuations, the equity screener I run every week and an SQL project on SEC filings. I'll add the systematic strategies I tested once I've tidied them up.
+I studied finance twice and data science once, and this repository is where the two meet. It's the research I do on my own time: company valuations, the equity screener I run every week, an SQL project on SEC filings, and factor and risk analysis. I'll add the systematic strategies I tested once I've tidied them up.
 
 ## Company valuations
 
@@ -36,6 +36,16 @@ The honest result: the top 10 beat the equal-weight universe by about 3% a year,
 
 The SQL uses CTEs, window functions (`ROW_NUMBER`, `NTILE`), conditional aggregation to pivot tags into columns, and self-joins across years.
 
+## Factor models and portfolio risk
+
+[`research/factor-models`](research/factor-models) regresses my backtested portfolios on the Fama-French five factors plus momentum, to see whether the screener's 3% a year is skill or factor exposure. It's mostly a profitability tilt (RMW loading 0.68) plus small-cap value, and what's left is about 3% a year with a t-stat around 1. My [momentum backtest](research/momentum) turned out to be the published momentum factor: 89% of it is explained by French's series, which is a good check on the code and a reminder that it's not a discovery.
+
+[`research/portfolio-risk`](research/portfolio-risk) measures the risk of a 70/20/10 equity portfolio the way a risk desk would:
+
+- One-day VaR and CVaR five ways. The normal distribution understates the 99% expected tail loss by about 40%.
+- A 21-year backtest of the 99% VaR with Kupiec and Christoffersen tests. Only filtered historical simulation gets the number of exceptions right (55 against 50 expected), and even it fails the clustering test at the start of each crisis.
+- Historical stress tests in euros and dollars. In 2022 the dollar halved a euro investor's loss (−10% against −21%).
+
 ## How I test things
 
 1. Write the rule and the pass criterion down before looking at results.
@@ -52,13 +62,14 @@ Python 3.11+.
 pip install -r equity-screener/requirements.txt -r equity-screener/requirements-backtest.txt
 pip install -r valuation/requirements.txt
 pip install -r sql-analysis/requirements.txt
+pip install -r research/requirements.txt
 ```
 
 Market data is downloaded from Yahoo Finance and SEC EDGAR on the first run and cached locally; it isn't included in the repo. The backtest needs a `SEC_USER_AGENT` in `equity-screener/.env` (see `.env.example`). The SQL project builds its database from the SEC files the backtest downloads. Each folder README has the exact commands.
 
 ## Tools
 
-Python (pandas, statsmodels), SQL (DuckDB), Excel models generated with openpyxl, SEC EDGAR and Yahoo Finance data. I use Claude as a coding and writing assistant; the questions, the test designs and the calls on what to keep or drop are mine.
+Python (pandas, statsmodels), SQL (DuckDB), Excel models generated with openpyxl, SEC EDGAR, Yahoo Finance and Kenneth French data library data. I use Claude as a coding and writing assistant; the questions, the test designs and the calls on what to keep or drop are mine.
 
 ## Disclaimer
 
