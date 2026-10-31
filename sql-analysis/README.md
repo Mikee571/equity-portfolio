@@ -73,7 +73,7 @@ Each year from 2014 to 2021, I ranked companies into ROE quintiles with `NTILE(5
 
 ![ROE persistence](figures/roe_persistence.png)
 
-The diagonal is strong. 53% of top-quintile companies are still top-quintile three years later, against 20% if ROE were random, and only 7% fall to the bottom. That persistence is the reason quality investing makes sense. In my earlier quality factor backtest it still didn't translate into excess returns, presumably because the market prices it in.
+The diagonal is strong. 53% of top-quintile companies are still top-quintile three years later, against 20% if ROE were random, and only 7% fall to the bottom. That persistence is the reason quality investing makes sense. In my earlier [quality factor backtest](../SYNTHESIS.md) it still didn't translate into excess returns, presumably because the market prices it in.
 
 The 13% that jump from the bottom quintile to the top are mostly turnarounds, plus companies whose small equity base inflates ROE.
 

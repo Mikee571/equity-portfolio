@@ -1,6 +1,6 @@
 # Cross-sectional momentum
 
-October 2026. 12-1 momentum (buy what went up most over the last year, skipping the last month) is probably the best-documented equity factor. I had already seen sector momentum fail in my sector TAA test, so here I try it on single stocks and on country ETFs.
+October 2026. 12-1 momentum (buy what went up most over the last year, skipping the last month) is probably the best-documented equity factor. I had already seen sector momentum fail in my [sector TAA test](../../strategy-lab/taa_sectorial), so here I try it on single stocks and on country ETFs.
 
 ![Momentum quintiles](figures/quintiles_12_1.png)
 

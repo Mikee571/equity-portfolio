@@ -1,0 +1,7 @@
+window_start,window_end,window_days,strategy,return_pct,start_value,end_value
+2026-04-12,2026-05-14,32,Global Macro,23.0,1000,1230
+2026-04-12,2026-05-14,32,Statistical Arbitrage,14.7,1000,1147
+2026-04-12,2026-05-14,32,S&P 500 Benchmark,14.0,1000,1140
+2026-04-12,2026-05-14,32,70/20/10 Passive,8.2,1000,1082
+2026-04-12,2026-05-14,32,Volatility Arbitrage,5.3,1000,1053
+2026-04-12,2026-05-14,32,Trend Following,2.7,1000,1027

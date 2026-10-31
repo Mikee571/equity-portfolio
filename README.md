@@ -2,7 +2,9 @@
 
 Ingeniería Comercial and MSc in Finance (Universidad Adolfo Ibáñez) · Master in Big Data & Data Science (Universidad Complutense de Madrid) · Master in Finance (EAE Business School) · CFA Level I candidate
 
-I studied finance twice and data science once, and this repository is where the two meet. It's the research I do on my own time: company valuations, the equity screener I run every week, an SQL project on SEC filings, and factor and risk analysis. I'll add the systematic strategies I tested once I've tidied them up.
+I studied finance twice and data science once, and this repository is where the two meet. It's the research I do on my own time: company valuations, the equity screener I run every week, an SQL project on SEC filings, factor and risk analysis, and a long list of systematic strategies I tested properly.
+
+Most of those strategies failed. I kept them because how I tested them, and why I rejected them, says more about how I work than a single winning backtest would. The [synthesis](SYNTHESIS.md) is the two-minute version.
 
 ## Company valuations
 
@@ -46,6 +48,18 @@ The SQL uses CTEs, window functions (`ROW_NUMBER`, `NTILE`), conditional aggrega
 - A 21-year backtest of the 99% VaR with Kupiec and Christoffersen tests. Only filtered historical simulation gets the number of exceptions right (55 against 50 expected), and even it fails the clustering test at the start of each crisis.
 - Historical stress tests in euros and dollars. In 2022 the dollar halved a euro investor's loss (−10% against −21%).
 
+## Systematic strategies
+
+I tested 11 systematic ideas in 2026, each with the rule and the pass criterion written down first, realistic costs and out-of-sample data. None passed. [SYNTHESIS.md](SYNTHESIS.md) has the scorecard and what I took from it.
+
+- [`strategy-lab/`](strategy-lab): cointegrated pairs (with Kalman and Ornstein-Uhlenbeck variants), an ML direction predictor, commodity trend following, Fed-regime sector rotation and adding quality or trend sleeves to a 70/20/10 portfolio. Most are archived, each with a write-up of why.
+- [`research/realised-vol`](research/realised-vol): HAR-RV volatility forecasting and volatility targeting. The forecast is 22% better than a trailing average, and the strategy built on it performs exactly the same.
+- [`research/mean-reversion`](research/mean-reversion): short-term RSI(2) reversal on index ETFs, and how its edge has shrunk by about 85% since 2008, when it became widely known.
+
+![RSI(2) decay](research/mean-reversion/figures/rsi2_decay.png)
+
+The pattern across all of them: published edges fade, what still works reduces risk rather than adding return, and an "almost significant" t-stat usually comes from one or two episodes.
+
 ## How I test things
 
 1. Write the rule and the pass criterion down before looking at results.
@@ -63,6 +77,7 @@ pip install -r equity-screener/requirements.txt -r equity-screener/requirements-
 pip install -r valuation/requirements.txt
 pip install -r sql-analysis/requirements.txt
 pip install -r research/requirements.txt
+pip install -r requirements.txt            # strategy-lab
 ```
 
 Market data is downloaded from Yahoo Finance and SEC EDGAR on the first run and cached locally; it isn't included in the repo. The backtest needs a `SEC_USER_AGENT` in `equity-screener/.env` (see `.env.example`). The SQL project builds its database from the SEC files the backtest downloads. Each folder README has the exact commands.

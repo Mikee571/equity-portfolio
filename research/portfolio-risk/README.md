@@ -78,7 +78,7 @@ Each day I forecast the next day's VaR using only past data, then count how ofte
 | Value sleeve | 20% | 22% |
 | Tactical | 10% | 10% |
 
-Risk shares almost equal the weights. Everything is equity and highly correlated, so splitting it into sleeves adds no real diversification. Only a different asset would change that: bonds, or the trend sleeve I tested in my portfolio construction study.
+Risk shares almost equal the weights. Everything is equity and highly correlated, so splitting it into sleeves adds no real diversification. Only a different asset would change that: bonds, or the trend sleeve I tested in [portfolio construction](../../strategy-lab/portfolio_construction).
 
 ```
 cd research/portfolio-risk
