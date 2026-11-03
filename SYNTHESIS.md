@@ -1,6 +1,6 @@
 # What I tested, and what I learned (October 2026)
 
-Between 7 and 12 October 2026 I went back over every systematic idea I had been playing with and tested each one properly. This page pulls everything together.
+Between 7 and 12 October 2026 I went back over every systematic idea I had been playing with and tested each one properly. At the end of October I did a second round with pre-registered tests and information that doesn't come from prices. This page pulls everything together.
 
 The method was the same for all of them:
 
@@ -18,7 +18,7 @@ The method was the same for all of them:
 | [Cointegrated pairs](strategy-lab/stat_arb) | 37 pairs, walk-forward 2012–26 | −1.9%/yr; Kalman and OU don't fix it | No (archived) |
 | [EMA cross, MACD](strategy-lab/archive) | 6 assets, 2006–26 | Not better than random timing on any | No |
 | [Five-factor screener (top 10)](equity-screener) | US point-in-time, 2012–26 | +3.2%/yr over its universe, t 1.0 | Not proven |
-| Quality factor | US, 2012–26 | +0.3–0.6%/yr, t 0.2–0.3 | No |
+| Quality factor | US, 2012–26 | +0.3–0.6%/yr, t 0.2–0.3 (but +4%, t 2.0, in CRSP data; see [OSAP check](research/osap-check)) | No |
 | [Commodity trend following](strategy-lab/trend_following) | ETFs, 2006–26 | Sharpe +0.18–0.23 with CI touching zero; drawdown −73% → −35% | Almost |
 | [Sector TAA by Fed regime](strategy-lab/taa_sectorial) | 2000–26 | +2.3%/yr, t 1.98, mostly 2000 and 2020 | No |
 | [Quality/trend sleeves in a 70/20/10](strategy-lab/portfolio_construction) | 2012–26 | No reliable Sharpe gain | No |
@@ -26,7 +26,22 @@ The method was the same for all of them:
 | [Cross-sectional momentum](research/momentum) | US stocks 2013–26; ETFs 1999–26 | Stocks +6%/yr winners − losers, t 1.7; ETFs ≈ 0 | No |
 | [Short-term reversal, RSI(2)](research/mean-reversion) | 6 ETFs, 1993–26 | +0.80% → +0.12% per trade; nothing since 2018 | Not any more |
 
-None of the eleven passed. A later [factor regression](research/factor-models) adds context. The screener's top 10 loads mainly on profitability, small size and value, leaving ~3% a year of alpha with t ≈ 1. The momentum backtest is almost entirely the published momentum factor (R² 0.89). The closest ones (the screener, the TAA and stock momentum) have t-stats between 1 and 2, and each depends on one or two specific periods.
+None of the eleven in the first round passed. A later [factor regression](research/factor-models) adds context. The screener's top 10 loads mainly on profitability, small size and value, leaving ~3% a year of alpha with t ≈ 1. The momentum backtest is almost entirely the published momentum factor (R² 0.89). The closest ones (the screener, the TAA and stock momentum) have t-stats between 1 and 2, and each depends on one or two specific periods.
+
+## Round 2: pre-registered tests (30–31 October 2026)
+
+For these I wrote the question, the data, the test and the pass criterion in a `PREREGISTRATION.md` before building anything, and kept 2024–26 as a hold-out I didn't open until development was closed.
+
+| Idea | Data | Net result | Passes? |
+|---|---|---|---|
+| [Post-earnings drift (PEAD)](research/pead) | 86,000 announcements, 2012–26, real 8-K dates | Development D10 − D1 t 2.2; hold-out t 1.0; buyable long leg ≈ 0 | No |
+| [13F clone of concentrated managers](research/clone-13f) | SEC 13F data sets, 2014–23 | +0.09%/yr over the universe (t 0.02), −0.5% against SPY | No |
+| [Cash profitability filter](research/profitability-filter) | US point-in-time, 2012–23 | +0.43%/yr, t 0.77 | No |
+| [Intraday momentum on SPY](research/intraday-momentum) (replication) | 1-minute bars, 2016–26 | Replica matches the paper (0.99 correlation); +0.9%/yr since publication vs SPY +20% | No |
+
+Two checks frame these. The [OSAP check](research/osap-check) compares my backtests with Open Source Asset Pricing, which is built on CRSP and includes delisted companies: survivorship bias costs my momentum backtest about 2 points a year, only in the loser leg. The [OSAP scan](research/osap-scan) looks at 207 published signals in mid and large caps since 2015: none survives a multiple-testing correction, and the only family with some coherence is operating profitability.
+
+That makes fifteen ideas tested and none passed.
 
 ## What I learned
 
@@ -58,6 +73,8 @@ It's only worth it with information that doesn't come from price: fund flows, re
 
 - a written hypothesis before testing;
 - a hold-out sample I don't touch until the end;
-- for stocks, a universe that includes delisted companies (without CRSP access I can't measure how much survivorship bias I have).
+- for stocks, a universe that includes delisted companies.
+
+The second round did exactly that for earnings surprises and 13F holdings, and the answer was the same: what's left is in shorts and microcaps, which I can't trade, and what I can buy is already in the index. The OSAP comparison also gave me a bound on survivorship bias that I didn't have before.
 
 I won't retest variations of what's already discarded: pairs with Kalman, RSI(2), ETF momentum, or re-fitting the screener's weights.

@@ -1,7 +1,13 @@
-# research/ (factor models, portfolio risk, momentum, volatility, mean reversion, derivatives)
+# research/ (factor models, portfolio risk, momentum, volatility, mean reversion, derivatives,
+# and the pre-registered tests: pead, clone-13f, profitability-filter, intraday-momentum, osap-*)
 numpy>=1.26
 pandas>=2.0
 scipy>=1.11
 statsmodels>=0.14
 yfinance>=0.2.50
 matplotlib>=3.7
+requests>=2.31
+duckdb>=1.0
+pyarrow>=15.0
+python-dotenv>=1.0
+# osap-check/compare.py needs openassetpricing, which pins pandas<2.3: install it in its own venv

@@ -1,0 +1,4 @@
+data/*
+!data/btm_daily_1h.csv
+!data/btm_daily_30m_alpaca.csv
+.env

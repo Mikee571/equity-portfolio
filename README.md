@@ -50,13 +50,23 @@ The SQL uses CTEs, window functions (`ROW_NUMBER`, `NTILE`), conditional aggrega
 
 ## Systematic strategies
 
-I tested 11 systematic ideas in 2026, each with the rule and the pass criterion written down first, realistic costs and out-of-sample data. None passed. [SYNTHESIS.md](SYNTHESIS.md) has the scorecard and what I took from it.
+I've tested 15 systematic ideas in 2026, each with the rule and the pass criterion written down first, realistic costs and out-of-sample data. None passed. [SYNTHESIS.md](SYNTHESIS.md) has the scorecard and what I took from it.
 
 - [`strategy-lab/`](strategy-lab): cointegrated pairs (with Kalman and Ornstein-Uhlenbeck variants), an ML direction predictor, commodity trend following, Fed-regime sector rotation and adding quality or trend sleeves to a 70/20/10 portfolio. Most are archived, each with a write-up of why.
 - [`research/realised-vol`](research/realised-vol): HAR-RV volatility forecasting and volatility targeting. The forecast is 22% better than a trailing average, and the strategy built on it performs exactly the same.
 - [`research/mean-reversion`](research/mean-reversion): short-term RSI(2) reversal on index ETFs, and how its edge has shrunk by about 85% since 2008, when it became widely known.
 
 ![RSI(2) decay](research/mean-reversion/figures/rsi2_decay.png)
+
+### Pre-registered tests
+
+In a second round I wrote a `PREREGISTRATION.md` for each test before building anything (question, data, test, pass criterion, what I expected) and kept 2024–26 as a hold-out I didn't open until development was closed.
+
+- [`research/pead`](research/pead): post-earnings drift from my own XBRL earnings surprises and real 8-K announcement dates. It passes in development (t 2.2) and fails in the hold-out. What's left is in shorts and microcaps.
+- [`research/clone-13f`](research/clone-13f): buying the stocks concentrated, patient managers hold in their top five, from the SEC's 13F data. It turns out to be a mega-cap basket: +0.09% a year over the universe.
+- [`research/profitability-filter`](research/profitability-filter): dropping the least cash-profitable fifth of the universe. Right direction, t 0.8.
+- [`research/intraday-momentum`](research/intraday-momentum): a replication of a 2024 SPY intraday momentum paper on 1-minute data. It matches the authors' monthly returns (0.99 correlation) and has been flat since publication while SPY rose 20% a year.
+- [`research/osap-check`](research/osap-check) and [`research/osap-scan`](research/osap-scan): my backtests against Open Source Asset Pricing, which uses CRSP and includes delisted companies. Survivorship bias costs my momentum backtest about 2 points a year. Out of 207 published signals in mid and large caps since 2015, none survives a multiple-testing correction.
 
 The pattern across all of them: published edges fade, what still works reduces risk rather than adding return, and an "almost significant" t-stat usually comes from one or two episodes.
 
