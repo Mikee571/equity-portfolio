@@ -74,7 +74,7 @@ ROWS = [
     (11, "Tangible common equity (TCE)", "=B10*B6", USD, "Formula"),
     (12, "Current P/TBV", "=B5/B10", MULT, "Formula"),
     (13, "Q3 2026 ROTCE: reported / ex significant items", "20% / 21%", None, "Q3 2026 earnings release ($658mm securities loss)"),
-    (14, "CET1 ratio (Standardized)", 0.139, PCT, "Q3 2026 earnings release; ~$30bn excess capital per management"),
+    (14, "CET1 ratio (Standardized)", 0.139, PCT, "Q3 2026 earnings release (Q2 revised from 14.1% to 14.2%); ~$30bn excess capital per management on the earnings call, not in the release"),
     (16, "Cost of equity", None, None, None),
     (17, "Risk-free rate (US 10-year)", 0.051, PCT, "^TNX close 2026-10-16"),
     (18, "Beta (5y monthly)", 1.015, "0.000", "Yahoo Finance"),

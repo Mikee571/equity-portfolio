@@ -57,7 +57,7 @@ def value_micron(row):
 def sample_gtt(rng, n=N, width=1.0):
     lumpy = 0.35
     d = pd.DataFrame({
-        "avg_orders": np.exp(np.log(60) + 0.30 * width * rng.standard_normal(n)),   # company estimate ~60 a year
+        "avg_orders": np.exp(np.log(60) + 0.30 * width * rng.standard_normal(n)),   # ~60 LNGC-eq a year: my conversion of the company's 10-year estimate
         "h2_orders": rng.uniform(15, 40, n),
         "royalty": np.clip(rng.normal(9.5, 0.75, n), 7, 12),
         "marine_growth": rng.uniform(0.03, 0.12, n),

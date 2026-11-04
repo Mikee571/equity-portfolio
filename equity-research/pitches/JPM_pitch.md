@@ -44,7 +44,7 @@ weakened.
 | Revenue (managed) | $58.0B | $50.9B, +8% YoY | NII $27.1B (+13%); NIR $23.8B (+3%) |
 | Expenses | — | $27.3B, **+12% YoY** | Negative operating leverage (revenue +8%) |
 | Credit costs | — | $2.7B: NCO $2.2B, reserve build $539M (mostly Wholesale) | Card NCO rate **2.91%** (3.34% in Q2); 2026 guide ~3.2% |
-| CET1 (Standardized) | 14.1% | 13.9% (−30 bp: AOCI, RWA growth, distributions) | Dimon: ~**$30B** excess capital (pitch estimated ~$55B) |
+| CET1 (Standardized) | 14.1% (later revised to 14.2%) | 13.9% (−30 bp vs the revised Q2: AOCI, RWA growth, distributions) | ~**$30B** excess capital per management on the call; not in the release (pitch estimated ~$55B) |
 | Net buybacks | $6.2B | **$0.66B** | Cut on purpose: capital redirected to organic growth (loans +10% YoY) |
 | TBVPS | $113.35 (+10% YoY) | $112.64 (**−0.6% QoQ**, +7% YoY) | AOCI losses |
 | Segments | — | CCB ROE 36%, CIB 18%, AWM 45% | Markets $10.3B (+15%), IB fees $3.0B (+14%) |
@@ -69,7 +69,7 @@ below the price.
 **Changes to the case**
 
 - *Weaker:* the buyback was the main support for EPS/TBVPS growth. It fell
-  by 90% in one quarter, and real excess capital (~$30B) is about half what
+  by 90% in one quarter, and real excess capital (~$30B, from the call) is about half what
   the pitch assumed. Expenses grew faster than revenue. TBVPS growth slowed
   from 10% to 7% YoY.
 - *Stronger:* card losses improved (2.91% vs 3.34%). Loan growth of 10% is

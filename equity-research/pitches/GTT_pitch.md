@@ -83,7 +83,7 @@ The reverse DCF is clearer still. At my WACC, the price needs about **96 orders 
 
 To get to €212 you need both a low discount rate (~7.5%) and orders around 75 a year, above management's own estimate. The sell-side mean target of €234 presumably assumes something like that.
 
-Monte Carlo. Across 20,000 simulated DCFs, with orders drawn around the company's ~60 a year and lumpy from year to year ([details](../../valuation/README.md)), the median is €125 and 8.7% of runs exceed €212 (16% with wider distributions). Average order intake explains far more of the value than anything else, including the WACC.
+Monte Carlo. Across 20,000 simulated DCFs, with orders drawn around ~60 LNG-carrier equivalents a year (my conversion of the company's 10-year estimate) and lumpy from year to year ([details](../../valuation/README.md)), the median is €125 and 8.7% of runs exceed €212 (16% with wider distributions). Average order intake explains far more of the value than anything else, including the WACC.
 
 ## 5. Bull case (what would make me wrong)
 
@@ -94,7 +94,7 @@ Monte Carlo. Across 20,000 simulated DCFs, with orders drawn around the company'
 
 ## 6. Bear case (why I think it's expensive)
 
-- The price needs more than the plan. Even at a 7.5% WACC, management's own ~60 orders a year only supports ~€167. The market is paying for an above-plan decade.
+- The price needs more than the plan. Even at a 7.5% WACC, the company's own 10-year estimate (c.550 LNG carriers plus other units, which I convert to ~60 LNG-carrier equivalents a year) only supports ~€167. The market is paying for an above-plan decade.
 - Orders are lumpy. The model can't predict which year is a peak: 162 units in 2022, 45 in 2025. After an ordering wave, a period of fleet overcapacity is the historical norm.
 - Competition in China. Chinese yards are a growing share of LNG carrier construction, and domestic membrane designs are the main long-term risk to GTT's share and royalty rates.
 - Policy and geopolitics. LNG demand projections depend on energy policy. Even the Middle East disruption the company calls neutral today shows how exposed the chain is.

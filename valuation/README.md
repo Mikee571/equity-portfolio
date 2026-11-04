@@ -21,7 +21,7 @@ Three scenarios hide two things: how likely each one is, and what happens in bet
 - Discount rate: WACC ±1.5 pp. Terminal growth 2–4%.
 
 **GTT.**
-- Orders: the average LNG-carrier-equivalent orders a year for 2027–35 are lognormal around the company's own ~60, with a 5–95% range of about 37–98. Each year then varies around that average, because orders are lumpy.
+- Orders: the average LNG-carrier-equivalent orders a year for 2027–35 are lognormal around ~60, my LNG-carrier-equivalent reading of the company's 10-year estimate (c.550 LNG carriers plus ethane carriers, FSRUs, FLNGs and onshore tanks), with a 5–95% range of about 37–98. Each year then varies around that average, because orders are lumpy.
 - Royalty per ship: €9.5mm ± €0.75mm.
 - Other inputs: WACC ±1 pp, terminal growth 0–2.5%, and GTT Marine growth of 3–12%.
 

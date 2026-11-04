@@ -34,7 +34,7 @@ Before reading anything into the valuation I checked the near term against outsi
 
 At €211.60, the weighted value is €124. The reverse DCF says the price needs ~96 orders a year at my 9.6% WACC.
 
-With Micron, my first draft was the problem. Here the near term matched guidance and consensus, so I looked for the gap elsewhere, in the sensitivity grid. Even at a 7.5% WACC with the company's 60 orders a year the value is €167. Getting to the price takes a lower discount rate *and* above-plan orders, so it isn't just my WACC.
+With Micron, my first draft was the problem. Here the near term matched guidance and consensus, so I looked for the gap elsewhere, in the sensitivity grid. Even at a 7.5% WACC with the company's 10-year estimate (c.550 LNG carriers plus other units, ~60 LNG-carrier equivalents a year by my conversion) the value is €167. Getting to the price takes a lower discount rate *and* above-plan orders, so it isn't just my WACC.
 
 ## Assumptions I'm least sure about
 

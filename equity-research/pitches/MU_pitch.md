@@ -12,7 +12,7 @@ Model: [`valuation/micron/micron_dcf.xlsx`](../../valuation/micron)
 
 ## 1. Thesis in one sentence
 
-> At $879, Micron's 4x forward P/E isn't cheap: it already assumes record FY27–28 earnings, and on top of that it prices revenue staying near the peak for years. For a business whose operating margin went from −37% to 75% in three years, I'd want a margin of safety, and there isn't one.
+> At $879, Micron's ~5x forward P/E (4x on FY28) isn't cheap: it already assumes record FY27–28 earnings, and on top of that it prices revenue staying near the peak for years. For a business whose operating margin went from −37% to 75% in three years, I'd want a margin of safety, and there isn't one.
 
 ## 2. Screening scorecard
 

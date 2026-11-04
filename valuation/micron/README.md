@@ -1,6 +1,6 @@
 # Micron: a DCF at the top of a memory cycle
 
-October 2026. Micron had just reported a year nobody would have modelled two years earlier: revenue up from $37bn to $133bn and operating margin from 26% to 75%. The stock traded at about 4x forward earnings. I wanted to know whether that was cheap or whether the market was right to distrust the earnings.
+October 2026. Micron had just reported a year nobody would have modelled two years earlier: revenue up from $37bn to $133bn and operating margin from 26% to 75%. The stock traded at about 5x FY27 consensus earnings, and 4x FY28. I wanted to know whether that was cheap or whether the market was right to distrust the earnings.
 
 The write-up with my view is the [pitch](../../equity-research/pitches/MU_pitch.md). This folder holds the model.
 
