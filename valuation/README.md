@@ -5,9 +5,11 @@
 | [`micron/`](micron) | Three-scenario DCF of Micron at the top of a memory cycle (Excel, built from SEC XBRL data) |
 | [`jpm/`](jpm) | Residual income model of JPMorgan with three ROTE scenarios, the implied ROTE and peers (Excel, built from SEC data and the Q3 2026 release) |
 | [`gtt/`](gtt) | Three-scenario DCF of GTT, driven by its order book and royalties per ship (Excel, built from company press releases) |
-| `models.py` | The same three models in Python, used by the dashboard and the Monte Carlo |
+| [`adobe/`](adobe) | Four-scenario DCF of Adobe around AI disruption, with a reverse DCF of what the price implies (Excel, built from SEC XBRL data and the Q3 FY2026 release) |
+| [`deckers/`](deckers) | Four-scenario DCF of Deckers with revenue built by brand (HOKA, UGG), and a reverse DCF of the brand growth the price implies (Excel, built from SEC XBRL data and the Q2 FY2027 release) |
+| `models.py` | The same models in Python, used by the dashboard and the Monte Carlo |
 | `test_models.py` | Checks that `models.py` gives exactly the Excel values with the default inputs |
-| `monte_carlo.py` | 20,000 simulated DCFs per company instead of three scenarios |
+| `monte_carlo.py` | 20,000 simulated DCFs per company (Micron, GTT, JPM; not Adobe or Deckers yet) instead of three scenarios |
 
 ## Monte Carlo: from three scenarios to a distribution
 

@@ -43,6 +43,24 @@ class TestAgainstExcel(unittest.TestCase):
                                    places=2, msg=name)
         self.assertAlmostEqual(models.jpm_implied_rote(), xl["ROTE the price implies, forever"][0], places=6)
 
+    def test_adobe(self):
+        xl = excel_summary(ROOT / "valuation/adobe/adobe_dcf.xlsx")
+        for k, name in enumerate(("Bull", "Base", "Erosion", "Disruption")):
+            s = models.ADOBE_SCENARIOS[name]
+            self.assertAlmostEqual(models.adobe_value(s["g"], s["m"], s["tg"]), xl["Value per share ($)"][k],
+                                   places=2, msg=name)
+        self.assertAlmostEqual(models.adobe_implied_margin(),
+                               xl["Flat margin from FY2027 needed to justify the price (base growth)"][0], places=6)
+
+    def test_deckers(self):
+        xl = excel_summary(ROOT / "valuation/deckers/deckers_dcf.xlsx")
+        for k, name in enumerate(("Bull", "Base", "Fade", "Bust")):
+            s = models.DECKERS_SCENARIOS[name]
+            self.assertAlmostEqual(models.deckers_value(s["h"], s["u"], s["m"], s["tg"])[0], xl["Value per share ($)"][k],
+                                   places=2, msg=name)
+        self.assertAlmostEqual(models.deckers_implied_margin(),
+                               xl["Flat margin from FY2028 needed to justify the price (base growth)"][0], places=6)
+
 
 if __name__ == "__main__":
     unittest.main()

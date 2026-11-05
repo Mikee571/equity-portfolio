@@ -53,6 +53,29 @@ Each day I forecast the next day's VaR using only past data, then count how ofte
 - **Filtered historical simulation** gets the count right. It rescales each past return by the volatility of its day, then applies today's EWMA volatility, so it combines a reactive volatility with the real shape of the tails.
 - Even FHS fails the independence test. Exceptions still bunch together at the start of each crisis: 2008, August 2011, March 2020, April 2025. A model fed only on past returns can't anticipate the first days of a shock. That's what stress tests are for.
 
+### Follow-up: a GJR-GARCH filter instead of EWMA (November 2026)
+
+Because of the clustering, I tried the textbook upgrade: a GJR-GARCH(1,1) with Student-t errors as the volatility filter inside FHS ([gjr_garch.py](gjr_garch.py)). I wrote the pass rule before running it. Kupiec p had to stay above 0.05, and Christoffersen p had to beat the EWMA version on the same days. Parameters are refitted every 21 trading days on an expanding window, using only data up to the day before. There's no untouched hold-out, because I had already looked at 2005–26 with EWMA. So this is a model comparison, not a test of a new signal.
+
+The evaluation runs 2007–2026: 4,785 days, 48 exceptions expected. It starts later than the table above because the GJR residual window needs 500 days.
+
+| Method | Exceptions | Kupiec p | Christoffersen p | Consecutive | Average VaR | Tick loss |
+|---|---|---|---|---|---|---|
+| FHS, EWMA filter | 51 | 0.65 | 0.002 | 4 | 3.21% | 0.0406 |
+| FHS, GARCH filter | 52 | 0.55 | 0.13 | 2 | 3.05% | 0.0387 |
+| FHS, GJR filter | 51 | 0.65 | 0.58 | 1 | 3.01% | 0.0377 |
+| GJR-t, parametric | 71 | 0.002 | 0.96 | 1 | 2.68% | 0.0375 |
+| GARCH-t, parametric | 79 | 0.000 | 0.05 | 4 | 2.71% | 0.0388 |
+
+- It passes. FHS with the GJR filter keeps the exception count and also passes the independence test. A Diebold-Mariano test on the quantile (tick) loss prefers it to EWMA too (t −2.9, p 0.004).
+- Its VaR is lower on average (3.0% against 3.2%). It reacts more after down days and relaxes faster in calm markets, so it's better timed, not just more conservative.
+- Most of the gain comes from GARCH itself: mean reversion and fitted parameters instead of a fixed λ. Plain GARCH already lifts Christoffersen from 0.002 to 0.13. The leverage term adds the rest.
+- The parametric versions get the count wrong (71 and 79 exceptions). A Student-t still underestimates this portfolio's left tail. The empirical residuals in FHS are what get the level right.
+- I'd be careful with the independence result. It rests on very few events: back-to-back exceptions go from 4 to 1. The tick-loss test uses every day, so it's the stronger evidence. The first day of a crash still breaks every model.
+- On the last day in the data (16 Oct 2026) the two filters disagree. EWMA vol is 9.8% a year. GJR says 12.4%, because it pulls back toward its long-run level. One-day 99% VaR is 1.6% with EWMA and 1.9% with GJR.
+
+If I had to pick one model for this portfolio's daily VaR, it would be FHS with a GJR-GARCH filter.
+
 ## Historical stress tests
 
 | Episode | Portfolio in EUR | Portfolio in USD | Back to the starting level |

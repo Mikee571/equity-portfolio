@@ -1,6 +1,6 @@
-"""Python versions of the two Excel DCFs (micron/ and gtt/), used by the dashboard and by monte_carlo.py.
+"""Python versions of the Excel models (micron/, gtt/, jpm/, adobe/, deckers/), used by the dashboard and by monte_carlo.py.
 
-The defaults are the same inputs as micron/build_model.py and gtt/build_model.py.
+The defaults are the same inputs as each folder's build_model.py.
 test_models.py checks that these functions reproduce the Excel results.
 """
 from dataclasses import dataclass, field, replace
@@ -217,3 +217,162 @@ def jpm_value(rote, lr, payout, p: JpmInputs = JpmInputs()):
 def jpm_implied_rote(p: JpmInputs = JpmInputs()):
     """ROTE that justifies today's P/TBV forever: P/TBV = (ROTE - g) / (r - g)."""
     return p.price / p.tbvps * (p.coe - p.g) + p.g
+
+
+# ------------------------------------------------------------------ Adobe ($mm)
+
+ADOBE_SCENARIOS = {  # growth FY27/FY31/FY35, margin FY30/FY35 (after SBC), terminal growth
+    "Bull": dict(g=(0.11, 0.10, 0.07), m=(0.40, 0.42), tg=0.035),
+    "Base": dict(g=(0.091, 0.06, 0.04), m=(0.37, 0.37), tg=0.03),
+    "Erosion": dict(g=(0.07, 0.01, -0.01), m=(0.33, 0.30), tg=0.00),
+    "Disruption": dict(g=(0.03, -0.07, -0.05), m=(0.27, 0.22), tg=-0.02),
+}
+
+
+@dataclass
+class AdobeInputs:
+    price: float = 263.82
+    shares: float = 389.2
+    cash: float = 5639
+    debt: float = 6363
+    rf: float = 0.0499
+    raw_beta: float = 1.415
+    erp: float = 0.05
+    kd: float = 0.055
+    tax: float = 0.21
+    rev0: float = 26601
+    rev_prev: float = 23769
+    margin0: float = 0.37
+    sbc: float = 0.08
+    sbc_is_cash: bool = True
+    da: float = 0.01
+    capex: float = 0.01
+    nwc: float = 0.15
+    q4_share: float = 0.25
+    wacc_override: float = None
+
+    @property
+    def wacc(self):
+        if self.wacc_override is not None:
+            return self.wacc_override
+        coe = self.rf + (0.67 * self.raw_beta + 0.33) * self.erp
+        mcap = self.price * self.shares
+        return (mcap * coe + self.debt * self.kd * (1 - self.tax)) / (mcap + self.debt)
+
+
+def adobe_paths(g, m, p: AdobeInputs = AdobeInputs()):
+    """Growth FY2027-35 and margin FY2026-35, interpolated linearly between the scenario anchors."""
+    growth = [g[0] + (g[1] - g[0]) * j / 4 for j in range(4)] + [g[1] + (g[2] - g[1]) * j / 4 for j in range(5)]
+    margin = [p.margin0 + (m[0] - p.margin0) * j / 4 for j in range(4)] + [m[0] + (m[1] - m[0]) * j / 5 for j in range(6)]
+    return growth, margin
+
+
+def adobe_value(g, m, tg, p: AdobeInputs = AdobeInputs(), margin_path=None):
+    """Value per share. margin_path (10 values, FY2026-35) overrides the interpolated margins."""
+    w = p.wacc
+    growth, margin = adobe_paths(g, m, p)
+    if margin_path is not None:
+        margin = margin_path
+    rev, prev, pv, fcf0, fcf = p.rev0, p.rev_prev, 0.0, None, None
+    for t in range(10):
+        if t:
+            rev = prev * (1 + growth[t - 1])
+        fcf = rev * (margin[t] * (1 - p.tax) + (not p.sbc_is_cash) * p.sbc + p.da - p.capex) + p.nwc * (rev - prev)
+        if t:
+            pv += fcf / (1 + w) ** t
+        else:
+            fcf0 = fcf
+        prev = rev
+    pv_tv = fcf * (1 + tg) / (w - tg) / (1 + w) ** 9
+    return (pv + pv_tv + p.cash - p.debt + p.q4_share * fcf0) / p.shares
+
+
+def adobe_implied_margin(p: AdobeInputs = AdobeInputs()):
+    """Flat margin from FY2027 that justifies the price, on the base revenue path."""
+    b = ADOBE_SCENARIOS["Base"]
+    v0, v1 = (adobe_value(b["g"], b["m"], b["tg"], p, [p.margin0] + [x] * 9) for x in (0.0, 1.0))
+    return (p.price - v0) / (v1 - v0)
+
+
+# ------------------------------------------------------------------ Deckers ($mm, fiscal years end 31 March)
+
+DECKERS_SCENARIOS = {  # HOKA and UGG growth at FY28/FY32/FY36, operating margin at FY28/FY31/FY36, terminal growth
+    "Bull": dict(h=(0.13, 0.10, 0.05), u=(0.05, 0.03, 0.02), m=(0.225, 0.24, 0.24), tg=0.035),
+    "Base": dict(h=(0.09, 0.06, 0.04), u=(0.03, 0.02, 0.02), m=(0.215, 0.215, 0.21), tg=0.03),
+    "Fade": dict(h=(0.05, 0.03, 0.02), u=(-0.03, -0.02, 0.0), m=(0.20, 0.18, 0.17), tg=0.02),
+    "Bust": dict(h=(0.0, -0.02, 0.01), u=(-0.10, -0.04, 0.0), m=(0.18, 0.14, 0.13), tg=0.01),
+}
+DECKERS_PROBS = {"Bull": 0.20, "Base": 0.45, "Fade": 0.25, "Bust": 0.10}
+
+
+@dataclass
+class DeckersInputs:
+    price: float = 81.99
+    shares: float = 133.5
+    net_cash: float = 1209.7
+    rf: float = 0.0493
+    raw_beta: float = 1.106
+    erp: float = 0.05
+    tax: float = 0.23
+    rev27: float = 5712.5
+    margin27: float = 0.23
+    da: float = 0.014
+    capex: float = 0.016
+    nwc: float = 0.08
+    h1_fcf: float = -46.4
+    rev26: float = 5472.3
+    hoka26: float = 2587.3
+    ugg26: float = 2738.8
+    hoka27_g: float = 0.08
+    ugg27_g: float = 0.03
+    other_g: float = 0.0
+    months: float = 5
+    wacc_override: float = None
+
+    @property
+    def wacc(self):  # no debt, so WACC = cost of equity
+        if self.wacc_override is not None:
+            return self.wacc_override
+        return self.rf + (0.67 * self.raw_beta + 0.33) * self.erp
+
+
+def deckers_paths(h, u, m):
+    """Yearly HOKA growth, UGG growth (FY2028-36) and operating margin (FY2028-36), interpolated between the anchors."""
+    def grow(a):
+        return [a[0] + (a[1] - a[0]) * j / 4 for j in range(4)] + [a[1] + (a[2] - a[1]) * j / 4 for j in range(5)]
+    margin = [m[0] + (m[1] - m[0]) * j / 3 for j in range(3)] + [m[1] + (m[2] - m[1]) * j / 5 for j in range(6)]
+    return grow(h), grow(u), margin
+
+
+def deckers_value(h, u, m, tg, p: DeckersInputs = DeckersInputs(), margin_path=None):
+    """Returns value per share and the yearly table (FY2027-36). margin_path (9 values, FY2028-36) overrides the margins."""
+    w = p.wacc
+    gh, gu, margin = deckers_paths(h, u, m)
+    if margin_path is not None:
+        margin = margin_path
+    hoka, ugg = p.hoka26 * (1 + p.hoka27_g), p.ugg26 * (1 + p.ugg27_g)
+    other = p.rev27 - hoka - ugg                       # balancing item that reconciles to guided revenue
+    rows, prev, pv = [], p.rev26, 0.0
+    for t in range(10):
+        if t:
+            hoka *= 1 + gh[t - 1]
+            ugg *= 1 + gu[t - 1]
+            other *= 1 + p.other_g
+        rev = hoka + ugg + other
+        mg = p.margin27 if t == 0 else margin[t - 1]
+        fcf = rev * (mg * (1 - p.tax) + p.da - p.capex) - p.nwc * (rev - prev)
+        if t:
+            pv += fcf / (1 + w) ** t
+        rows.append(dict(year=2027 + t, revenue=rev, hoka=hoka, ugg=ugg, operating_margin=mg, fcf=fcf))
+        prev = rev
+    pv_tv = fcf * (1 + tg) / (w - tg) / (1 + w) ** 9
+    h2 = rows[0]["fcf"] - p.h1_fcf
+    equity = (pv + pv_tv + h2) / (1 + w) ** (p.months / 12) + p.net_cash
+    return equity / p.shares, rows, pv_tv / (pv + pv_tv)
+
+
+def deckers_implied_margin(p: DeckersInputs = DeckersInputs()):
+    """Flat operating margin from FY2028 that justifies the price, on the base revenue path."""
+    b = DECKERS_SCENARIOS["Base"]
+    v0, v1 = (deckers_value(b["h"], b["u"], b["m"], b["tg"], p, [x] * 9)[0] for x in (0.0, 1.0))
+    return (p.price - v0) / (v1 - v0)
