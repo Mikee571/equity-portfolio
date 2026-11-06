@@ -26,7 +26,7 @@ score = pd.DataFrame([
     ("Cross-sectional momentum", "US stocks 2013-26, ETFs 1999-26", "Stocks t = 1.7; ETFs ≈ 0", "No"),
     ("Short-term reversal, RSI(2)", "6 ETFs, 1993-2026", "Edge fell from 0.80% to 0.12% per trade", "Not any more"),
 ], columns=["Idea", "Data", "Net result", "Passes?"])
-st.dataframe(score, hide_index=True, use_container_width=True)
+st.dataframe(score, hide_index=True, width="stretch")
 
 st.subheader("What I learned")
 st.markdown(

@@ -25,7 +25,7 @@ chart = alt.Chart(rs).mark_line(strokeWidth=2, point=alt.OverlayMarkDef(size=36)
                                                 range=[BLUE, SCENARIO_COLORS["Bear"]]), title=None),
     tooltip=["item", "fiscal_year", alt.Tooltip("share_revised_over_1pct:Q", format=".1%"),
              alt.Tooltip("share_revised_down:Q", format=".1%", title="revised down")])
-st.altair_chart(style(chart, 280), use_container_width=True)
+st.altair_chart(style(chart, 280), width="stretch")
 st.caption("Revenue revisions are almost always downwards: past revenue is re-presented without businesses that "
            "were later sold. A backtest on 'latest' numbers quietly knows about future divestitures.")
 
@@ -40,7 +40,7 @@ with c1:
         tooltip=["group", alt.Tooltip("median_share_change_2015_20:Q", format=".0%", title="share change"),
                  alt.Tooltip("median_return_2021_25:Q", format=".0%", title="median return"),
                  alt.Tooltip("mean_return_2021_25:Q", format=".0%", title="mean return")])
-    st.altair_chart(style(chart, 260), use_container_width=True)
+    st.altair_chart(style(chart, 260), width="stretch")
     st.caption("The median buyback company did best, but the mean returns of the two extremes are equal (~+90%): "
                "heavy diluters include a few huge winners. Survivors only.")
 with c2:
@@ -49,8 +49,8 @@ with c2:
 
 st.subheader("Sector margins, 2012-2025")
 sm = pd.read_csv(R / "02_sector_margins.csv")
-st.dataframe(sm, hide_index=True, use_container_width=True, column_config={
+st.dataframe(sm, hide_index=True, width="stretch", column_config={
     c: st.column_config.NumberColumn(format="percent") for c in ("typical_margin", "worst_year_margin", "best_year_margin")})
 
 st.subheader("Days to file the 10-K")
-st.dataframe(pd.read_csv(R / "06_filing_lag.csv"), hide_index=True, use_container_width=True)
+st.dataframe(pd.read_csv(R / "06_filing_lag.csv"), hide_index=True, width="stretch")

@@ -61,7 +61,7 @@ with tab_mu:
             y=alt.Y("revenue:Q", title="Revenue ($bn)"),
             color=alt.Color("scenario:N", scale=scenario_scale(dom), sort=dom, title=None),
             tooltip=["scenario", "year", alt.Tooltip("revenue:Q", format=",.1f", title="Revenue $bn")])
-        st.altair_chart(style(chart.properties(title="Revenue: history and scenarios")), use_container_width=True)
+        st.altair_chart(style(chart.properties(title="Revenue: history and scenarios")), width="stretch")
 
 # ---------------------------------------------------------------- GTT
 with tab_gtt:
@@ -101,7 +101,7 @@ with tab_gtt:
             color=alt.Color("scenario:N", scale=scenario_scale(dom), sort=dom, title=None),
             tooltip=["scenario", "year", alt.Tooltip("revenue:Q", format=",.0f", title="Revenue €mm")])
         st.altair_chart(style(chart.properties(title="Revenue: history, order book and scenarios")),
-                        use_container_width=True)
+                        width="stretch")
         st.caption("2026-28 revenue is mostly already signed: the company publishes its order-book schedule "
                    "(€655mm in 2027, €603mm in 2028). After that it depends on new orders.")
 
@@ -147,7 +147,7 @@ with tab_jpm:
             x="rote:Q", y="p_tbv:Q", text="bank")
         ref = alt.Chart(line).mark_line(color="#eb6834", strokeDash=[4, 3]).encode(x="rote:Q", y="p_tbv:Q")
         st.altair_chart(style((ref + pts + labels).properties(
-            title="Large US banks: valuation vs returns (dashed: justified P/TBV at your r and g)")), use_container_width=True)
+            title="Large US banks: valuation vs returns (dashed: justified P/TBV at your r and g)")), width="stretch")
         st.caption("Banks above the dashed line trade at more than today's returns justify if they lasted forever.")
 
 # ---------------------------------------------------------------- Adobe
@@ -195,7 +195,7 @@ with tab_adbe:
             y=alt.Y("revenue:Q", title="Revenue ($bn)"),
             color=alt.Color("scenario:N", scale=scenario_scale(dom), sort=dom, title=None),
             tooltip=["scenario", "year", alt.Tooltip("revenue:Q", format=",.1f", title="Revenue $bn")])
-        st.altair_chart(style(chart.properties(title="Revenue: history and scenarios")), use_container_width=True)
+        st.altair_chart(style(chart.properties(title="Revenue: history and scenarios")), width="stretch")
         st.caption("FY2026 is the company's guidance midpoint. Turning off the SBC switch raises every value by "
                    "25-40%, which is why it's visible here.")
 
@@ -240,7 +240,7 @@ with tab_deck:
             y=alt.Y("revenue:Q", title="Revenue ($bn)"),
             color=alt.Color("scenario:N", scale=scenario_scale(dom), sort=dom, title=None),
             tooltip=["scenario", "year", alt.Tooltip("revenue:Q", format=",.2f", title="Revenue $bn")])
-        st.altair_chart(style(chart.properties(title="Revenue: history and scenarios")), use_container_width=True)
+        st.altair_chart(style(chart.properties(title="Revenue: history and scenarios")), width="stretch")
         st.caption("FY2027 is the company's guidance ($5.71bn). In the Fade case UGG goes out of fashion as it did in "
                    "FY2015-17 and HOKA becomes a normal running brand.")
 

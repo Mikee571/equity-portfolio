@@ -36,7 +36,7 @@ c3.metric("Median FCF yield", f"{view.fcf_yield.median():.1%}" if len(view) else
 st.dataframe(
     view[["rank", "ticker", "company", "country", "sector", "market_cap", "pe", "roe_pct", "debt_to_equity",
           "peg", "fcf_yield", "score"]],
-    hide_index=True, use_container_width=True,
+    hide_index=True, width="stretch",
     column_config={
         "market_cap": st.column_config.NumberColumn("Mkt cap ($bn)", format="%.1f"),
         "pe": st.column_config.NumberColumn("P/E", format="%.1f"),
@@ -58,7 +58,7 @@ if len(view):
         x=alt.X("z:Q", title="z-score vs other survivors (winsorised)"),
         y=alt.Y("factor:N", sort=None, title=None),
         tooltip=["factor", alt.Tooltip("z:Q", format=".2f"), "weight"])
-    st.altair_chart(style(chart, 220), use_container_width=True)
+    st.altair_chart(style(chart, 220), width="stretch")
     if isinstance(row.data_warnings, str):
         st.caption(f"Data warnings: {row.data_warnings}. PEG_BASE_EFFECT means EPS growth comes off a depressed "
                    f"base, so the PEG is scored as neutral.")
