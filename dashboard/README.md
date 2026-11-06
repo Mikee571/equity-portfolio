@@ -1,6 +1,6 @@
 # Dashboard
 
-A small Streamlit app that works as the front door to this repository. It has four pages:
+A small Streamlit app that works as the front door to this repository. You can open it at https://mrenere-equity.streamlit.app or run it locally (below). It has four pages:
 
 - Valuations: the five company models (Micron, GTT, JPMorgan, Adobe, Deckers) with sliders for the discount rate and the key drivers: normalised margins, orders per year, long-run ROTE, and your own growth and margin case for Adobe and Deckers. A reverse DCF recalculates as you move them.
 - Screener: the latest five-factor ranking (snapshot of the weekly run on 2026-10-11) with filters and each stock's factor profile.
