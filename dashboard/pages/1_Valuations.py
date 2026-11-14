@@ -16,6 +16,14 @@ st.title("Valuations")
 st.caption("Same logic as the Excel models in valuation/ (checked by valuation/test_models.py). Defaults reproduce the published "
            "numbers; the sliders let you challenge them.")
 
+def rate_slider(label, lo, hi, exact, key):
+    """Discount-rate slider. The slider shows the rate rounded to two decimals; until it is moved, the model
+    uses the exact rate, so the defaults match the Excel models to the cent."""
+    shown = round(exact * 100, 2)
+    picked = st.slider(label, lo, hi, shown, 0.25, key=key)
+    return exact if picked == shown else picked / 100
+
+
 tab_mu, tab_gtt, tab_jpm, tab_adbe, tab_deck, tab_mc = st.tabs(
     ["Micron (MU)", "GTT", "JPMorgan", "Adobe (ADBE)", "Deckers (DECK)", "Monte Carlo"])
 
@@ -29,7 +37,7 @@ with tab_mu:
     )
     left, right = st.columns([1, 2.2])
     with left:
-        wacc = st.slider("WACC (%)", 8.0, 18.0, round(base_in.wacc * 100, 2), 0.25, key="mu_w") / 100
+        wacc = rate_slider("WACC (%)", 8.0, 18.0, base_in.wacc, "mu_w")
         g = st.slider("Terminal growth (%)", 0.0, 4.0, base_in.g * 100, 0.25, key="mu_g") / 100
         st.markdown("Normalised operating margin")
         norms = {n: st.slider(f"{n} (%)", 5, 70, int(s.norm_margin * 100), 5, key=f"mu_n_{n}") / 100
@@ -73,7 +81,7 @@ with tab_gtt:
     )
     left, right = st.columns([1, 2.2])
     with left:
-        wacc = st.slider("WACC (%)", 6.0, 12.0, round(gi.wacc * 100, 2), 0.25, key="gtt_w") / 100
+        wacc = rate_slider("WACC (%)", 6.0, 12.0, gi.wacc, "gtt_w")
         royalty = st.slider("Royalty per LNG-carrier equivalent (€mm)", 7.0, 13.0, gi.royalty, 0.5, key="gtt_r")
         custom = st.slider("Your case: orders a year 2027-35", 20, 120, 60, 5, key="gtt_q")
         g_custom = st.slider("Your case: terminal growth (%)", 0.0, 3.0, 1.5, 0.25, key="gtt_g") / 100
@@ -116,7 +124,7 @@ with tab_jpm:
     )
     left, right = st.columns([1, 2.2])
     with left:
-        coe = st.slider("Cost of equity (%)", 8.0, 13.0, round(ji.coe * 100, 2), 0.25, key="jpm_r") / 100
+        coe = rate_slider("Cost of equity (%)", 8.0, 13.0, ji.coe, "jpm_r")
         g = st.slider("Terminal growth (%)", 2.0, 5.0, ji.g * 100, 0.25, key="jpm_g") / 100
         st.markdown("Long-run ROTE")
         lrs = {n: st.slider(f"{n} (%)", 8, 28, int(round(s["lr"] * 100)), 1, key=f"jpm_lr_{n}") / 100
@@ -161,7 +169,7 @@ with tab_adbe:
     )
     left, right = st.columns([1, 2.2])
     with left:
-        wacc = st.slider("WACC (%)", 8.0, 13.0, round(ai.wacc * 100, 2), 0.25, key="adbe_w") / 100
+        wacc = rate_slider("WACC (%)", 8.0, 13.0, ai.wacc, "adbe_w")
         sbc_cash = st.toggle("Treat stock-based compensation (8% of revenue) as a cash cost", True, key="adbe_sbc")
         custom_g = st.slider("Your case: revenue growth FY2027-35 (% a year)", -8.0, 12.0, 5.0, 0.5, key="adbe_g") / 100
         custom_m = st.slider("Your case: operating margin from FY2030 (%)", 15, 45, 35, 1, key="adbe_m") / 100
@@ -210,7 +218,7 @@ with tab_deck:
     )
     left, right = st.columns([1, 2.2])
     with left:
-        wacc = st.slider("WACC (%)", 8.0, 13.0, round(di.wacc * 100, 2), 0.25, key="deck_w") / 100
+        wacc = rate_slider("WACC (%)", 8.0, 13.0, di.wacc, "deck_w")
         h = st.slider("Your case: HOKA growth FY2028-36 (% a year)", -4.0, 14.0, 6.0, 0.5, key="deck_h") / 100
         u = st.slider("Your case: UGG growth FY2028-36 (% a year)", -10.0, 6.0, 1.0, 0.5, key="deck_u") / 100
         m = st.slider("Your case: operating margin from FY2028 (%)", 10.0, 26.0, 21.5, 0.5, key="deck_m") / 100
