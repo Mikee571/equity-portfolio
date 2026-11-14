@@ -36,7 +36,7 @@ Before reading anything into the valuation I checked the near term. The base cas
 | Revenue CAGR FY26–35 | 9.4% | 6.3% | 2.1% | −3.7% |
 | Margin FY35 (after SBC) | 42% | 37% | 30% | 22% |
 | Terminal growth | 3.5% | 3% | 0% | −2% |
-| Value per share | $484 | $339 | $190 | $105 |
+| Value per share | $510 | $357 | $200 | $110 |
 | Probability (mine) | 20% | 40% | 25% | 15% |
 
 - Bull: AI expands the market. Firefly and the agents bring in new users, and seats get repriced upwards.
@@ -44,17 +44,17 @@ Before reading anything into the valuation I checked the near term. The base cas
 - Erosion: the low end moves to free or cheaper tools, professionals stay, and price increases stop.
 - Disruption: generative models replace the workflow. Revenue in FY35 is 30% below FY26 and keeps shrinking.
 
-At $263.82 the weighted value is $296, 12% above the price.
+At $263.82 the weighted value is $311, 18% above the price.
 
 ## What the price implies
 
 The reverse DCF gives three ways to read $263.82:
 
-- On the base revenue path, the price needs a flat margin of 28.5% from FY27, against 37% today. So the market is pricing roughly a quarter of the margin away.
-- As a perpetuity, it's FCF growing 2.7% a year forever at my WACC. Adding SBC back, it's 0.7%. Right now revenue is growing 12–13%.
-- Between my scenarios, the price is close to a 50/50 mix of base and erosion.
+- On the base revenue path, the price needs a flat margin of 27.0% from FY27, against 37% today. So the market is pricing a bit more than a quarter of the margin away.
+- As a perpetuity, it's FCF growing 2.3% a year forever at my WACC. Adding SBC back, it's 0.2%. Right now revenue is growing 12–13%.
+- Between my scenarios, the price is a 40/60 mix of base and erosion.
 
-The discount rate matters a lot here. With the same method as Micron (Blume-adjusted beta of 1.28, 5% ERP) the WACC comes out at 11.0%, which is high for a company with net cash and A+ debt. At 10% the base case is worth $387, at 9% $453. The base case only equals the price at a 13.2% WACC. The WACC × growth grid on the Reverse DCF sheet shows this.
+The discount rate matters a lot here. With the same method as Micron (Blume-adjusted beta of 1.28, 5% ERP) the WACC comes out at 11.0%, which is high for a company with net cash and A+ debt. At 10% the base case is worth $406, at 9% $473. The base case only equals the price at a 13.8% WACC. The WACC × growth grid on the Reverse DCF sheet shows this.
 
 ## Assumptions I'm least sure about
 
@@ -62,6 +62,6 @@ The discount rate matters a lot here. With the same method as Micron (Blume-adju
 - Organic growth. Reported growth of 13% in Q3 includes Semrush, which closed in Q2 and added ~$480mm of ARR. My rough estimate is that organic ARR growth is closer to 8% than 10%.
 - Leadership. The CFO left in June, the head of the creative business left in September, and Anil Chakravarthy takes over from Shantanu Narayen on 1 December. That's a lot of change in one year for a company whose whole question is execution through a technology shift.
 - Margin path. I keep the margin flat at 37% in the base case. If AI inference costs grow faster than pricing, gross margin will fall even if revenue holds.
-- Timing. Cash flows from FY27 are discounted from the end of FY26 (late November). The Q4 FY26 cash flow is added to net cash.
+- Timing. Cash flows from FY27 are discounted from the end of FY26 (late November), at mid-year. The Q4 FY26 cash flow is added to net cash.
 
 Data: SEC 10-K FY2025, 10-Qs and 8-Ks for FY2026 (press releases of 12 March, 11 June and 10 September 2026; CEO announcement of 3 September); Yahoo Finance as of 2026-10-23; TradingView as of 2026-10-25.

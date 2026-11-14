@@ -24,19 +24,19 @@ The hard part of valuing a cyclical at the peak is that the current year tells y
 |---|---|---|---|
 | After FY28 | 2023-style bust | Cycle turns, normalises | No real downturn |
 | Normalised operating margin | 20% (≈ FY15–25 average of 17.5%) | 35% (above history, HBM mix) | 50% |
-| Value per share | $208 | $511 | $1,049 |
+| Value per share | $219 | $542 | $1,118 |
 
-At $879, the weighted value (30/50/20) is $528.
+At $879, the weighted value (30/50/20) is $560.
 
 My first version had the near term far below consensus. All three scenarios came out under the price, and the reverse DCF asked for a 139% margin. That was a sign my inputs were off, not that the market was mad, so I recalibrated to consensus before drawing any conclusion.
 
-The most useful output turned out to be the reverse DCF. With base-case revenue, the price needs operating margins of ~94% from FY29, which can't happen. So the market isn't really pricing margins; it's pricing revenue that doesn't come back down. That reframed the question for me, from "is 4x cheap?" to "do I believe memory has stopped being cyclical?"
+The most useful output turned out to be the reverse DCF. With base-case revenue, the price needs operating margins of ~86% from FY29. FY26 was the best year in Micron's history and the margin was 74.6%, so that isn't going to happen. So the market isn't really pricing margins; it's pricing revenue that doesn't come back down. That reframed the question for me, from "is 4x cheap?" to "do I believe memory has stopped being cyclical?"
 
 ## Where the model could be wrong
 
-- WACC of 14.2%. It comes from a raw beta of 2.2, Blume-adjusted to 1.82. That's the input that most separates my numbers from the sell-side mean target of ~$1,560. At 10% the base case is $675, and the bull case is $1,579, which is basically the Street's target.
-- Customer deposits ($12.7bn) treated as debt. They're prepayments to be repaid in product. Switching that off in Inputs adds about $11 a share.
+- WACC of 14.2%. It comes from a raw beta of 2.2, Blume-adjusted to 1.82. That's the input that most separates my numbers from the sell-side mean target of ~$1,560. At 10% the base case is $706, and the bull case is $1,654, a little above the Street's target.
+- Customer deposits ($12.7bn) treated as debt. They're prepayments to be repaid in product. Switching that off in Inputs adds about $12 a share.
 - Capex paths are my own estimates. Memory capex is lumpy, and it moves free cash flow a lot in the explicit years.
-- Discounting. End-of-year discounting from September 2026, with a five-year explicit period and a terminal value based on reinvestment (g / RONIC). In the base case the terminal value is only a third of EV, so the near term carries a lot of weight.
+- Discounting. Mid-year discounting from September 2026, with a five-year explicit period and a terminal value based on reinvestment (g / RONIC). In the base case the terminal value is only a third of EV, so the near term carries a lot of weight.
 
 Data: SEC EDGAR (10-K FY26 filed 2026-10-09, 8-K of 2026-09-30) and Yahoo Finance as of 2026-10-16.

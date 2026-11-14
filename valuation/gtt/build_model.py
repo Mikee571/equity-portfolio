@@ -69,7 +69,8 @@ ROWS = [
     (9, "Net cash", "=B7-B8", EUR, "Formula (294.7 in the press release)"),
     (11, "Discount rate", None, None, None),
     (12, "Risk-free rate (French OAT 10-year)", 0.0475, PCT, "Trading Economics, 2026-10-07: ~4.75% (spread over Bunds at a post-2011 high)"),
-    (13, "Beta", 0.90, "0.00", "Assumption: regression beta 0.42 (Yahoo) looks too low for a business tied to shipbuilding orders"),
+    (13, "Adjusted beta (Blume: 0.67 x raw + 0.33)", "=0.67*0.42+0.33", "0.00",
+     "Raw regression beta 0.42 (Yahoo), adjusted the same way as in the other models. An earlier version used a hand-set 0.90"),
     (14, "Equity risk premium", 0.055, PCT, "Assumption (author), Europe"),
     (15, "Cost of equity", "=B12+B13*B14", PCT, "CAPM"),
     (16, "Pre-tax cost of debt", 0.04, PCT, "Assumption"),
@@ -213,7 +214,7 @@ dcf.column_dimensions["A"].width = 44
 dcf.column_dimensions["B"].width = 4
 for c in YC + ["M"]:
     dcf.column_dimensions[c].width = 10
-put(dcf, "A1", "DCF by scenario (€mm). FY = calendar year. Cash flows 2027-2035 discounted from end-2026; "
+put(dcf, "A1", "DCF by scenario (€mm). FY = calendar year. Cash flows 2027-2035 discounted from end-2026 at mid-year; "
                "H2 2026 cash flow added to net cash.", bold=True)
 FLOW = ["Order-book revenue (already signed)", "New orders (units)", "Royalty per unit", "Value of new orders",
         "Revenue from new orders", "Core containment revenue", "GTT Marine revenue", "Services and other",
@@ -270,7 +271,7 @@ def block(name, top):
         put(dcf, f"{c}{rr['Free cash flow']}",
             f"={c}{rr['NOPAT']}-{c}{rr['D&A']}+{c}{rr['Capex']}+{c}{rr['Change in NWC']}", fmt=EUR, bold=True)
         if k > 0:
-            put(dcf, f"{c}{rr['Discount period (years)']}", k, BLUE, "0")
+            put(dcf, f"{c}{rr['Discount period (years)']}", k - 0.5, BLUE, "0.0")
             put(dcf, f"{c}{rr['Discount factor']}", f"=1/(1+{I}$B$19)^{c}{rr['Discount period (years)']}", fmt="0.000")
             put(dcf, f"{c}{rr['PV of FCF']}", f"={c}{rr['Free cash flow']}*{c}{rr['Discount factor']}", fmt=EUR)
     last, first = YC[-1], YC[0]
@@ -342,7 +343,7 @@ for k, y in enumerate(YEARS[1:]):
     src = COL[y]
     put(rev, f"{c}14", f"=DCF!{src}{r0['Free cash flow']}", GREEN, EUR)
     put(rev, f"{c}15", f"=DCF!{src}{r1['Free cash flow']}-DCF!{src}{r0['Free cash flow']}", fmt=EUR)
-    put(rev, f"{c}16", k + 1, BLUE, "0")
+    put(rev, f"{c}16", k + 0.5, BLUE, "0.0")
 G = f"{I}$C$52"
 CONST = f"({I}$B$9+DCF!C{BLOCK['Rev0']['vals']['+ H2 2026 free cash flow']})"
 put(rev, "A19", "Value per share (€): WACC (rows) x new orders a year 2027-35 (columns)", bold=True)

@@ -67,11 +67,11 @@ def micron_value(s: MicronScenario, p: MicronInputs = MicronInputs()):
         ebit = rev * s.margin[t]
         da = da_prev + p.da_catch_up * (capex_prev - da_prev)
         fcf = ebit * (1 - p.tax) + da - s.capex[t] - p.nwc * (rev - rev_prev)
-        pv_sum += fcf / (1 + w) ** (t + 1)
+        pv_sum += fcf / (1 + w) ** (t + 0.5)             # mid-year convention
         rows.append(dict(year=2027 + t, revenue=rev, operating_margin=s.margin[t], fcf=fcf))
         rev_prev, da_prev, capex_prev = rev, da, s.capex[t]
     tv_fcf = rev_prev * (1 + p.g) * s.norm_margin * (1 - p.tax) * (1 - p.g / p.ronic)
-    pv_tv = tv_fcf / (w - p.g) / (1 + w) ** 5
+    pv_tv = tv_fcf / (w - p.g) / (1 + w) ** 4.5
     equity = pv_sum + pv_tv + p.cash - p.debt - p.deposits * p.deposits_as_debt
     return equity / p.shares, rows, pv_tv / (pv_sum + pv_tv)
 
@@ -102,7 +102,7 @@ class GttInputs:
     net_cash: float = 384.7 - 90.0
     debt: float = 90.0
     rf: float = 0.0475
-    beta: float = 0.90
+    beta: float = 0.67 * 0.42 + 0.33   # Blume-adjusted regression beta, same method as the other models
     erp: float = 0.055
     kd: float = 0.04
     tax: float = 0.16
@@ -151,8 +151,8 @@ def gtt_value(h2: float, orders, marine: float, g: float, p: GttInputs = GttInpu
         fcf = nopat + p.da - p.capex - (p.nwc * (rev - prev_rev) if k else 0.0)
         rows.append(dict(year=y, revenue=rev, ebitda_margin=ebitda / rev, fcf=fcf))
         prev_rev = rev
-    pv = sum(r["fcf"] / (1 + w) ** k for k, r in enumerate(rows) if k)
-    pv_tv = rows[-1]["fcf"] * (1 + g) / (w - g) / (1 + w) ** 9
+    pv = sum(r["fcf"] / (1 + w) ** (k - 0.5) for k, r in enumerate(rows) if k)   # mid-year convention
+    pv_tv = rows[-1]["fcf"] * (1 + g) / (w - g) / (1 + w) ** 8.5
     equity = pv + pv_tv + p.net_cash + rows[0]["fcf"] * p.h2_share
     return equity / p.shares, rows, pv_tv / (pv + pv_tv)
 
@@ -279,11 +279,11 @@ def adobe_value(g, m, tg, p: AdobeInputs = AdobeInputs(), margin_path=None):
             rev = prev * (1 + growth[t - 1])
         fcf = rev * (margin[t] * (1 - p.tax) + (not p.sbc_is_cash) * p.sbc + p.da - p.capex) + p.nwc * (rev - prev)
         if t:
-            pv += fcf / (1 + w) ** t
+            pv += fcf / (1 + w) ** (t - 0.5)             # mid-year convention
         else:
             fcf0 = fcf
         prev = rev
-    pv_tv = fcf * (1 + tg) / (w - tg) / (1 + w) ** 9
+    pv_tv = fcf * (1 + tg) / (w - tg) / (1 + w) ** 8.5
     return (pv + pv_tv + p.cash - p.debt + p.q4_share * fcf0) / p.shares
 
 
@@ -362,12 +362,12 @@ def deckers_value(h, u, m, tg, p: DeckersInputs = DeckersInputs(), margin_path=N
         mg = p.margin27 if t == 0 else margin[t - 1]
         fcf = rev * (mg * (1 - p.tax) + p.da - p.capex) - p.nwc * (rev - prev)
         if t:
-            pv += fcf / (1 + w) ** t
+            pv += fcf / (1 + w) ** (t - 0.5)             # mid-year convention, from 31 Mar 2027
         rows.append(dict(year=2027 + t, revenue=rev, hoka=hoka, ugg=ugg, operating_margin=mg, fcf=fcf))
         prev = rev
-    pv_tv = fcf * (1 + tg) / (w - tg) / (1 + w) ** 9
-    h2 = rows[0]["fcf"] - p.h1_fcf
-    equity = (pv + pv_tv + h2) / (1 + w) ** (p.months / 12) + p.net_cash
+    pv_tv = fcf * (1 + tg) / (w - tg) / (1 + w) ** 8.5
+    h2 = rows[0]["fcf"] - p.h1_fcf                     # arrives on average halfway between today and 31 Mar 2027
+    equity = (pv + pv_tv) / (1 + w) ** (p.months / 12) + h2 / (1 + w) ** (p.months / 24) + p.net_cash
     return equity / p.shares, rows, pv_tv / (pv + pv_tv)
 
 

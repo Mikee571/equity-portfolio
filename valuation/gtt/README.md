@@ -30,18 +30,18 @@ Before reading anything into the valuation I checked the near term against outsi
 | | Bear | Base | Bull |
 |---|---|---|---|
 | Orders a year | 35 | 60 | 75 |
-| Value per share | €66 | €129 | €172 |
+| Value per share | €75 | €160 | €219 |
 
-At €211.60, the weighted value is €124. The reverse DCF says the price needs ~96 orders a year at my 9.6% WACC.
+At €211.60, the weighted value is €154. The reverse DCF says the price needs ~77 orders a year at my 8.1% WACC.
 
-With Micron, my first draft was the problem. Here the near term matched guidance and consensus, so I looked for the gap elsewhere, in the sensitivity grid. Even at a 7.5% WACC with the company's 10-year estimate (c.550 LNG carriers plus other units, ~60 LNG-carrier equivalents a year by my conversion) the value is €167. Getting to the price takes a lower discount rate *and* above-plan orders, so it isn't just my WACC.
+With Micron, my first draft was the problem. Here the near term matched guidance and consensus, so I looked for the gap elsewhere, in the sensitivity grid. Even at a 7.5% WACC with the company's 10-year estimate (c.550 LNG carriers plus other units, ~60 LNG-carrier equivalents a year by my conversion) the value is €172, against €160 at my own WACC. Getting to the price takes above-plan orders, like the 75 a year of the bull case. So the gap is about orders, not about my discount rate.
 
 ## Assumptions I'm least sure about
 
-- Beta of 0.9 instead of the regression 0.42. I don't trust a 0.42 beta for a business tied to shipbuilding cycles, but it's the most debatable input. With 0.5 the WACC is ~7.5%.
+- Beta. I use the regression beta of 0.42 with the Blume adjustment (0.61), the same way as in my other models, which gives a WACC of 8.1%. My first version set the beta by hand at 0.9, because 0.42 looked too low for a business tied to shipbuilding cycles. That gave a WACC of 9.6% and a base case of €135 instead of €160. It's the most debatable input in the model.
 - The French 10-year (4.75%) as risk-free rate. It's at its highest since 2011 because of French politics. GTT is paid by Korean and Chinese yards, so a Bund-based rate is a fair alternative.
 - Flat €9.5mm royalty per LNG-carrier equivalent (+2% a year). FLNGs and big onshore tanks pay more per unit, so a shift in mix would raise it.
 - Terminal growth of 1.5% in the base case. It assumes LNG shipping keeps growing slowly after 2035, which is debatable either way given the energy transition.
-- Timing. Cash flows from 2027 are discounted from the end of 2026. The H2 2026 cash flow is added to net cash, and the €4.30 interim dividend stays with the shareholder.
+- Timing. Cash flows from 2027 are discounted from the end of 2026, at mid-year. The H2 2026 cash flow is added to net cash, and the €4.30 interim dividend stays with the shareholder.
 
 Data: GTT FY2025 (2026-02-19) and H1 2026 (2026-07-28) press releases; Yahoo Finance and Trading Economics, mid-October 2026.

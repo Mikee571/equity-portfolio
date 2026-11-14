@@ -29,8 +29,8 @@ Three scenarios hide two things: how likely each one is, and what happens in bet
 
 | | Price | Base-case DCF | 5th pct | Median | 95th pct | Runs above the price | Main driver (rank correlation) |
 |---|---|---|---|---|---|---|---|
-| Micron | $879 | $511 | $348 | $507 | $895 | **5.5%** | Depth of the downturn (+0.82), then normalised margin (+0.76) |
-| GTT | €212 | €129 | €68 | €125 | €238 | **8.7%** | Average orders a year (+0.81), then WACC (−0.25) |
+| Micron | $879 | $542 | $369 | $539 | $951 | **7.5%** | Depth of the downturn (+0.82), then normalised margin (+0.76) |
+| GTT | €212 | €160 | €77 | €154 | €310 | **22%** | Average orders a year (+0.80), then WACC (−0.27) |
 | JPM | $340 | $276 | $170 | $274 | $458 | **23.9%** | Long-run ROTE (+0.72), then cost of equity (−0.60) |
 
 ![Micron Monte Carlo](figures/mc_micron.png)
@@ -41,9 +41,9 @@ For JPM the long-run ROTE is drawn around management's 17% target (±2.5 pp), wi
 
 ### So what
 
-- **The medians land on the base cases** ($507 vs $511, €125 vs €129). That's a check that the distributions are centred where I meant them to be, not a finding.
-- "Expensive" survives the uncertainty for Micron and GTT: only about one simulated world in 18 (Micron) or 11 (GTT) is worth more than today's price. JPM is different. One run in four beats the price, which fits "quality at a full price" rather than "expensive".
-- The answer depends on how wide you think the uncertainty is. With the key distributions 50% wider, those shares rise to 13% and 16%. Fatter tails put more weight on the good outcomes the market is paying for.
+- **The medians land on the base cases** ($539 vs $542, €154 vs €160). That's a check that the distributions are centred where I meant them to be, not a finding.
+- "Expensive" survives the uncertainty for Micron: only about one simulated world in 13 is worth more than today's price. GTT and JPM are different. About one run in four beats the price (22% and 24%), which fits "a full price" rather than "expensive". For GTT that share was 8.7% while I had the beta set by hand at 0.9. It rose when I switched to the Blume-adjusted regression beta that the other models use.
+- The answer depends on how wide you think the uncertainty is. With the key distributions 50% wider, the shares for Micron and GTT rise to 15% and 29%. Fatter tails put more weight on the good outcomes the market is paying for.
 - This also exposed an inconsistency in my own work. In the scenario version I gave Micron's bull case a 20% probability. In the Monte Carlo, outcomes that good come up only ~5% of the time. One of the two is too generous, and I'd rather point that out than hide it. Either way, the stock comes out expensive.
 - The ranking of drivers matches the qualitative thesis. For Micron it's how deep the cycle turns, not the discount rate. For GTT it's how many ships get ordered. Nothing else comes close.
 

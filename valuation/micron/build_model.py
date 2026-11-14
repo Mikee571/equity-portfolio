@@ -190,7 +190,7 @@ dcf = wb.create_sheet("DCF")
 dcf.column_dimensions["A"].width = 42
 for c in "BCDEFGH":
     dcf.column_dimensions[c].width = 12
-put(dcf, "A1", "DCF by scenario ($mm). End-of-year discounting from the start of FY27 (September 2026).", bold=True)
+put(dcf, "A1", "DCF by scenario ($mm). Mid-year discounting from the start of FY27 (September 2026).", bold=True)
 BLOCK = {}
 FLOW = ["Revenue", "  growth", "Operating margin", "EBIT", "Taxes", "NOPAT", "D&A", "Capex, net", "Change in NWC",
         "Free cash flow", "Discount period (years)", "Discount factor", "PV of FCF"]
@@ -228,7 +228,7 @@ def block(name, top):
         put(dcf, f"{c}{rr['Change in NWC']}", f"={I}$B$28*({c}{rr['Revenue']}-{p}{rr['Revenue']})", fmt=USD)
         put(dcf, f"{c}{rr['Free cash flow']}",
             f"={c}{rr['NOPAT']}+{c}{rr['D&A']}-{c}{rr['Capex, net']}-{c}{rr['Change in NWC']}", fmt=USD, bold=True)
-        put(dcf, f"{c}{rr['Discount period (years)']}", j + 1, BLUE, "0")
+        put(dcf, f"{c}{rr['Discount period (years)']}", j + 0.5, BLUE, "0.0")
         put(dcf, f"{c}{rr['Discount factor']}", f"=1/(1+{I}$B$23)^{c}{rr['Discount period (years)']}", fmt="0.000")
         put(dcf, f"{c}{rr['PV of FCF']}", f"={c}{rr['Free cash flow']}*{c}{rr['Discount factor']}", fmt=USD)
     v0 = top + 2 + len(FLOW) + 1
@@ -285,7 +285,7 @@ for j, c in enumerate("DEFGH"):
     put(rev, f"{c}7", f"=IF({c}6=1,DCF!{c}{b['Free cash flow']},"
                       f"DCF!{c}{b['D&A']}-DCF!{c}{b['Capex, net']}-DCF!{c}{b['Change in NWC']})", GREEN, USD)
     put(rev, f"{c}8", f"=IF({c}6=1,0,{c}5*(1-{I}$B$20))", fmt=USD)
-    put(rev, f"{c}9", j + 1, BLUE, "0")
+    put(rev, f"{c}9", j + 0.5, BLUE, "0.0")
 K = f"$H$5*(1+{I}$B$26)*(1-{I}$B$20)*(1-{I}$B$26/{I}$B$27)"
 NET = f"({I}$B$7-{I}$B$22-{I}$B$10*{I}$B$11)"
 put(rev, "A11", "Target equity value (price x diluted shares)")

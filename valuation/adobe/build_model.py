@@ -256,7 +256,7 @@ dcf.column_dimensions["A"].width = 46
 dcf.column_dimensions["B"].width = 4
 for c in YC + ["M"]:
     dcf.column_dimensions[c].width = 10
-put(dcf, "A1", "DCF by scenario ($mm). Fiscal years end late November. Cash flows FY2027-35 discounted from end of FY2026; "
+put(dcf, "A1", "DCF by scenario ($mm). Fiscal years end late November. Cash flows FY2027-35 discounted from end of FY2026 at mid-year; "
                "Q4 FY2026 cash flow added to net cash.", bold=True)
 FLOW = ["Revenue", "Revenue growth", "Operating margin (after SBC)", "Operating income", "Taxes", "NOPAT",
         "+ SBC added back (if not treated as cash)", "+ D&A", "- Capex", "+ Working-capital inflow", "Free cash flow",
@@ -297,7 +297,7 @@ def block(name, top):
             f"=SUM({c}{rr['NOPAT']}:{c}{rr['+ Working-capital inflow']})", fmt=USD, bold=True)
         put(dcf, f"{c}{rr['FCF margin']}", f"={c}{rr['Free cash flow']}/{c}{rr['Revenue']}", fmt=PCT)
         if k > 0:
-            put(dcf, f"{c}{rr['Discount period (years)']}", k, BLUE, "0")
+            put(dcf, f"{c}{rr['Discount period (years)']}", k - 0.5, BLUE, "0.0")
             put(dcf, f"{c}{rr['Discount factor']}", f"=1/(1+{I}$B$20)^{c}{rr['Discount period (years)']}", fmt="0.000")
             put(dcf, f"{c}{rr['PV of FCF']}", f"={c}{rr['Free cash flow']}*{c}{rr['Discount factor']}", fmt=USD)
     last, first = YC[-1], YC[0]
@@ -361,12 +361,12 @@ put(rev, "C12", f"=DCF!C{b['rows']['Free cash flow']}", GREEN, USD)
 put(rev, "A13", "FCF yield on enterprise value")
 put(rev, "C13", "=C12/C11", fmt=PCT)
 put(rev, "A14", "Implied perpetual FCF growth at the model WACC", bold=True)
-put(rev, "C14", f"=(C11*{I}B20-C12)/(C11+C12)", fmt=PCT, bold=True)
+put(rev, "C14", f"=(C11*{I}B20-C12*(1+{I}B20)^0.5)/(C11+C12*(1+{I}B20)^0.5)", fmt=PCT, bold=True)
 put(rev, "A15", "  Same, with SBC added back to FCF")
-put(rev, "C15", f"=(C11*{I}B20-(C12+{I}B25*{I}B23*{I}B26))/(C11+C12+{I}B25*{I}B23*{I}B26)", fmt=PCT)
+put(rev, "C15", f"=(C11*{I}B20-(C12+{I}B25*{I}B23*{I}B26)*(1+{I}B20)^0.5)/(C11+(C12+{I}B25*{I}B23*{I}B26)*(1+{I}B20)^0.5)", fmt=PCT)
 
-# grids: constant revenue growth FY2027-35, flat margin; FCF_k = R0 (1+g)^k [m(1-t) + (1-T)s + da - cx + n g/(1+g)]
-put(rev, "A17", "Discount periods (helper)")
+# grids: constant revenue growth FY2027-35, flat margin, mid-year discounting (the (1+w)^0.5 factor); FCF_k = R0 (1+g)^k [m(1-t) + (1-T)s + da - cx + n g/(1+g)]
+put(rev, "A17", "Year index (helper)")
 for k in range(9):
     put(rev, f"{chr(ord('C') + k)}17", k + 1, BLUE, "0")
 KS = "$C$17:$K$17"
@@ -377,7 +377,7 @@ def grid_cell(g, m, w):
     gt = f"MIN({g},{TG})"
     x = f"({m}*(1-{I}$B$18)+(1-{I}$B$26)*{I}$B$25+{I}$B$27-{I}$B$28+{I}$B$29*{g}/(1+{g}))"
     q4 = f"DCF!$C${b['vals']['+ Q4 FY2026 free cash flow']}"
-    return (f"=({I}$B$23*{x}*(SUMPRODUCT(((1+{g})/(1+{w}))^{KS})+(1+{g})^9*(1+{gt})/(({w}-{gt})*(1+{w})^9))"
+    return (f"=({I}$B$23*{x}*(1+{w})^0.5*(SUMPRODUCT(((1+{g})/(1+{w}))^{KS})+(1+{g})^9*(1+{gt})/(({w}-{gt})*(1+{w})^9))"
             f"+{I}$B$9+{q4})/{I}$B$6")
 
 

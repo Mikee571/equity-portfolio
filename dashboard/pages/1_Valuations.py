@@ -69,7 +69,7 @@ with tab_gtt:
     st.markdown(
         "**The question:** GTT is paid a royalty on almost every LNG carrier built. The order book covers most of "
         "the next three years; the valuation depends on how many ships are ordered after that. "
-        "**My view: expensive.** Full pitch: `equity-research/pitches/GTT_pitch.md`; Excel model: `valuation/gtt/`."
+        "**My view: full price.** Full pitch: `equity-research/pitches/GTT_pitch.md`; Excel model: `valuation/gtt/`."
     )
     left, right = st.columns([1, 2.2])
     with left:

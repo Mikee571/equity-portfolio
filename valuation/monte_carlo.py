@@ -61,7 +61,7 @@ def sample_gtt(rng, n=N, width=1.0):
         "h2_orders": rng.uniform(15, 40, n),
         "royalty": np.clip(rng.normal(9.5, 0.75, n), 7, 12),
         "marine_growth": rng.uniform(0.03, 0.12, n),
-        "wacc": np.clip(rng.normal(models.GttInputs().wacc, 0.01, n), 0.07, 0.125),
+        "wacc": np.clip(rng.normal(models.GttInputs().wacc, 0.01, n), 0.06, 0.125),
         "g": rng.uniform(0.0, 0.025, n),
     })
     # orders are lumpy: each year varies around the average (mean-preserving lognormal noise)

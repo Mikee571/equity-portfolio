@@ -14,7 +14,7 @@ Model: [`valuation/adobe/adobe_dcf.xlsx`](../../valuation/adobe)
 
 > At $264 the market is paying for Adobe to lose about a quarter of its margin, while revenue is still growing 12–13% and the margin is holding at 37% after SBC. AI disruption is a real risk, but the price already pays for a good part of it.
 
-What the model says: at $264 the market is pricing Adobe somewhere between my base case ($339) and my erosion case ($190), close to a 50/50 mix. Equivalently, it is paying for FCF growth of 2.7% a year forever, or a margin that falls from 37% to 28.5% on consensus revenue.
+What the model says: at $264 the market is pricing Adobe somewhere between my base case ($357) and my erosion case ($200), a little closer to erosion. Equivalently, it is paying for FCF growth of 2.3% a year forever, or a margin that falls from 37% to 27% on consensus revenue.
 
 ## 2. Screening scorecard
 
@@ -45,28 +45,28 @@ Four scenarios that differ only in growth, margin and terminal growth. Margins a
 |---|---|---|---|---|
 | Revenue CAGR FY26–35 | 9.4% | 6.3% | 2.1% | −3.7% |
 | Margin FY35 | 42% | 37% | 30% | 22% |
-| Value per share | $484 | $339 | $190 | $105 |
-| vs price | +84% | +28% | −28% | −60% |
+| Value per share | $510 | $357 | $200 | $110 |
+| vs price | +93% | +35% | −24% | −58% |
 
-With my probabilities (20/40/25/15) the weighted value is $296, 12% above the price.
+With my probabilities (20/40/25/15) the weighted value is $311, 18% above the price.
 
 The reverse DCF:
 
-- Margin the price needs on the base revenue path: 28.5% from FY27, against 37% today.
-- Perpetual FCF growth the price implies: 2.7% (0.7% if SBC is added back). In the relative-value check I said about −1%. That was wrong: I used FCF before SBC and a 9% discount rate.
-- WACC at which the base case equals the price: 13.2%. My WACC is 11.0%.
+- Margin the price needs on the base revenue path: 27.0% from FY27, against 37% today.
+- Perpetual FCF growth the price implies: 2.3% (0.2% if SBC is added back). In the relative-value check I said about −1%. That was wrong: I used FCF before SBC and a 9% discount rate.
+- WACC at which the base case equals the price: 13.8%. My WACC is 11.0%.
 
 Against mature software peers (Microsoft, Oracle, SAP, Salesforce, ADP, Intuit) Adobe trades at roughly a 30% P/E discount. The all-software median (36x) overstates it, because it includes Palantir and CrowdStrike.
 
 ## 5. Bull case
 
-- The price already assumes a lot of damage. Even the erosion case, where growth goes to zero and margins drop 7 points, is worth $190, 28% below today.
-- AI-first ARR is growing more than 150%, and freemium is adding users. If AI turns out to expand the market, the base case is worth $339 and the bull case $484.
-- A lower discount rate. With net cash and A+ debt, an 11% WACC is conservative. At 9–10% the base case is $387–453.
+- The price already assumes a lot of damage. Even the erosion case, where growth goes to zero and margins drop 7 points, is worth $200, 24% below today.
+- AI-first ARR is growing more than 150%, and freemium is adding users. If AI turns out to expand the market, the base case is worth $357 and the bull case $510.
+- A lower discount rate. With net cash and A+ debt, an 11% WACC is conservative. At 9–10% the base case is $406–473.
 
 ## 6. Bear case
 
-- The disruption case isn't far-fetched. If image, video and document work can be done by a model without the app, the subscription base shrinks, and working capital becomes a cash drain on the way down. That case is worth $105.
+- The disruption case isn't far-fetched. If image, video and document work can be done by a model without the app, the subscription base shrinks, and working capital becomes a cash drain on the way down. That case is worth $110.
 - Organic growth is slowing. Without Semrush, ARR growth is closer to 8%, and FY27 consensus is +9%.
 - Leadership turnover in one year: the CFO resigned in June, the president of the creative business left in September, and a new CEO starts on 1 December.
 - SBC and buybacks. Adobe has spent more than its FCF on buybacks. At a lower share price that is better value, but it leaves less cushion.
@@ -85,7 +85,7 @@ Against mature software peers (Microsoft, Oracle, SAP, Salesforce, ADP, Intuit) 
 My call is cheap, not a sure thing. What I'm betting on is that the erosion the price assumes takes longer, or is smaller, than the market thinks. These rules check that bet against the numbers each quarter.
 
 - Add if the price falls towards the erosion case (~$190–210) and the quarterly numbers still look like the base case: organic ARR growth of 8% or more, and a margin after SBC of 35% or more.
-- Trim if the price reaches the base case (~$340). From there, the upside depends on the bull case.
+- Trim if the price reaches the base case (~$355). From there, the upside depends on the bull case.
 - Exit if the thesis breaks, which means two quarters in a row of any of these: organic ARR growth below 6%, the margin after SBC below 33%, or FY27 guidance pointing to growth below 7%. At that point the business is the erosion case, and the price would no longer be cheap.
 - Review after every quarterly release. The first real test is the Q4 FY26 results and FY27 guidance in mid-December, the first under the new CEO.
 

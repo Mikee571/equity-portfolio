@@ -293,8 +293,8 @@ dcf.column_dimensions["A"].width = 46
 dcf.column_dimensions["B"].width = 4
 for c in YC + ["M"]:
     dcf.column_dimensions[c].width = 10
-put(dcf, "A1", "DCF by scenario ($mm). Fiscal years end 31 March. FY2028-36 cash flows discounted to 31 Mar 2027; that value "
-               "plus H2 FY2027 FCF is then discounted 5 months to today. Net cash added at face value.", bold=True)
+put(dcf, "A1", "DCF by scenario ($mm). Fiscal years end 31 March. FY2028-36 cash flows discounted at mid-year to 31 Mar 2027 and then "
+               "5 months to today; H2 FY2027 FCF discounted 2.5 months. Net cash added at face value.", bold=True)
 FLOW = ["HOKA revenue", "UGG revenue", "Other brands revenue", "Revenue", "Revenue growth", "HOKA growth", "UGG growth",
         "HOKA as % of revenue", "Operating margin", "Operating income", "Taxes", "NOPAT", "+ D&A", "- Capex",
         "- Working-capital investment", "Free cash flow", "FCF margin", "Discount period (years from 31 Mar 2027)",
@@ -341,7 +341,7 @@ def block(name, top):
             f"=SUM({c}{rr['NOPAT']}:{c}{rr['- Working-capital investment']})", fmt=USD, bold=True)
         put(dcf, f"{c}{rr['FCF margin']}", f"={c}{rr['Free cash flow']}/{c}{rr['Revenue']}", fmt=PCT)
         if k > 0:
-            put(dcf, f"{c}{rr['Discount period (years from 31 Mar 2027)']}", k, BLUE, "0")
+            put(dcf, f"{c}{rr['Discount period (years from 31 Mar 2027)']}", k - 0.5, BLUE, "0.0")
             put(dcf, f"{c}{rr['Discount factor']}",
                 f"=1/(1+{I}$B$20)^{c}{rr['Discount period (years from 31 Mar 2027)']}", fmt="0.000")
             put(dcf, f"{c}{rr['PV of FCF']}", f"={c}{rr['Free cash flow']}*{c}{rr['Discount factor']}", fmt=USD)
@@ -361,7 +361,8 @@ def block(name, top):
     put(dcf, f"C{vr['Discount factor to today']}", f"=1/(1+{I}$B$20)^({I}$B$39/12)", fmt="0.000")
     put(dcf, f"C{vr['+ Net cash at 30 Sep 2026']}", f"={I}$B$9", GREEN, USD)
     put(dcf, f"C{vr['Equity value today']}",
-        f"=(C{vr['Enterprise value at 31 Mar 2027']}+C{vr['+ H2 FY2027 free cash flow']})*C{vr['Discount factor to today']}"
+        f"=C{vr['Enterprise value at 31 Mar 2027']}*C{vr['Discount factor to today']}"
+        f"+C{vr['+ H2 FY2027 free cash flow']}*C{vr['Discount factor to today']}^0.5"
         f"+C{vr['+ Net cash at 30 Sep 2026']}", fmt=USD, bold=True)
     put(dcf, f"C{vr['Value per share ($)']}", f"=C{vr['Equity value today']}/{I}$B$6", fmt=USD2, bold=True)
     put(dcf, f"C{vr['Upside / (downside) vs price']}", f"=C{vr['Value per share ($)']}/{I}$B$5-1", fmt=PCT)
@@ -407,19 +408,20 @@ put(rev, "C8", f"={I}B26", GREEN, PCT)
 
 put(rev, "A10", "2. Perpetual FCF growth the price implies (Gordon growth on base FY2028 FCF)", bold=True)
 put(rev, "A11", "Enterprise value at market, rolled to 31 Mar 2027 (less H2 FY27 FCF)")
-put(rev, "C11", f"=({I}B19-{I}B9)/DCF!C{b['vals']['Discount factor to today']}-DCF!C{b['vals']['+ H2 FY2027 free cash flow']}",
+put(rev, "C11", f"=({I}B19-{I}B9)/DCF!C{b['vals']['Discount factor to today']}"
+                f"-DCF!C{b['vals']['+ H2 FY2027 free cash flow']}/DCF!C{b['vals']['Discount factor to today']}^0.5",
     fmt=USD)
 put(rev, "A12", "FY2028 free cash flow (base)")
 put(rev, "C12", f"=DCF!D{b['rows']['Free cash flow']}", GREEN, USD)
 put(rev, "A13", "FCF yield on enterprise value")
 put(rev, "C13", "=C12/C11", fmt=PCT)
 put(rev, "A14", "Implied perpetual FCF growth at the model WACC", bold=True)
-put(rev, "C14", f"={I}B20-C13", fmt=PCT, bold=True)
+put(rev, "C14", f"={I}B20-C13*(1+{I}B20)^0.5", fmt=PCT, bold=True)
 
 # Grids: HOKA and UGG grow at constant rates from FY2028, Other brands as in Inputs, flat margin.
 # PV(FCF_1..9) = sum over brands of B0 * SP(a) * (x - n*g/(1+g)), SP(a) = sum_k (a/(1+w))^k, x = m(1-t) + da - capex.
 # FCF_9 = sum over brands of B0 * a^9 * (x - n*g/(1+g)); terminal growth = min(base, revenue growth in FY2036).
-put(rev, "A16", "Discount periods (helper)")
+put(rev, "A16", "Year index (helper)")
 for k in range(9):
     put(rev, f"{chr(ord('C') + k)}16", k + 1, BLUE, "0")
 KS = "$C$16:$K$16"
@@ -437,7 +439,8 @@ def grid_cell(gh, gu, m, w):
     r8 = "+".join(f"{b0}*(1+{g})^8" for b0, g in brands)
     gt = f"MIN({TG},({r9})/({r8})-1)"
     h2 = f"DCF!$C${b['vals']['+ H2 FY2027 free cash flow']}"
-    return (f"=((({pv})+({f9})*(1+{gt})/(({w}-{gt})*(1+{w})^9)+{h2})/(1+{w})^({I}$B$39/12)+{I}$B$9)/{I}$B$6")
+    return (f"=((({pv})+({f9})*(1+{gt})/(({w}-{gt})*(1+{w})^9))*(1+{w})^0.5/(1+{w})^({I}$B$39/12)"
+            f"+{h2}/(1+{w})^({I}$B$39/24)+{I}$B$9)/{I}$B$6")
 
 
 BASE_M = f"{I}$D${BASE + 3}"

@@ -51,7 +51,7 @@ The reverse is the cleanest way to say it. In steady state, P/TBV = (ROTE − g)
 - a 30% chance of a credit cycle that drops ROTE to 8–14% in years 2–3;
 - cost of equity ±1 pp, growth 3–5%, payout 45–70%.
 
-Median $274; 5–95% range $170–458; **24% of runs are above the price** (29% with wider distributions). That's very different from Micron (5%) and GTT (9%). JPM isn't clearly expensive. It's priced for its best realistic outcome, which is what "quality at a full price" means in numbers.
+Median $274; 5–95% range $170–458; **24% of runs are above the price** (29% with wider distributions). That's very different from Micron (7.5%), and about the same as GTT (22%). JPM isn't clearly expensive. It's priced for its best realistic outcome, which is what "quality at a full price" means in numbers.
 
 ## Where it could be wrong
 

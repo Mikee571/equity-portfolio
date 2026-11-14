@@ -43,14 +43,14 @@ WACC is 14.2%: risk-free 5.1%, Blume-adjusted beta 1.82, ERP 5%. Terminal growth
 | Story | FY27 at the low end of estimates, then a 2023-style bust | Consensus FY27–28, then the cycle turns | No real downturn; memory stops being a commodity |
 | FY2031 revenue | $86bn | $151bn | $368bn |
 | Normalised operating margin | 20% | 35% | 50% |
-| Value per share | $208 | $511 | $1,049 |
-| vs $879 | −76% | −42% | +19% |
+| Value per share | $219 | $542 | $1,118 |
+| vs $879 | −75% | −38% | +27% |
 
-Weighting the scenarios 30/50/20 gives **$528, about 40% below the price**.
+Weighting the scenarios 30/50/20 gives **$560, about 36% below the price**.
 
-The more useful number is the reverse DCF. With the base-case revenue path, Micron would need operating margins of about 94% from FY29 onwards to justify $879. That's impossible, so the market isn't betting on margins. It's betting on revenue not falling back. Put another way, the price sits about two-thirds of the way from my base case to my bull case.
+The more useful number is the reverse DCF. With the base-case revenue path, Micron would need operating margins of about 86% from FY29 onwards to justify $879. FY26 was the best year in its history and the margin was 74.6%, so the market isn't betting on margins. It's betting on revenue not falling back. Put another way, the price sits a little under 60% of the way from my base case to my bull case.
 
-Monte Carlo. I also ran 20,000 simulated DCFs instead of three scenarios ([details](../../valuation/README.md)). The median comes out at $507, and only 5.5% of runs are worth more than $879; with 50% wider distributions, 13% are. The two inputs that matter most are how far revenue falls after FY28 and the normalised margin. The discount rate is a distant third.
+Monte Carlo. I also ran 20,000 simulated DCFs instead of three scenarios ([details](../../valuation/README.md)). The median comes out at $539, and only 7.5% of runs are worth more than $879; with 50% wider distributions, 15% are. The two inputs that matter most are how far revenue falls after FY28 and the normalised margin. The discount rate is a distant third.
 
 The peers look the same: SK hynix trades at 2.7x and Samsung at 3.0x forward earnings. The whole group is priced for a cycle, not for a new normal.
 
@@ -59,7 +59,7 @@ The peers look the same: SK hynix trades at 2.7x and Samsung at 3.0x forward ear
 - AI changes the demand curve. HBM is harder to make, uses more wafer per bit and is sold on multi-year contracts. If that keeps supply tight for longer, the bull path is real.
 - Strategic Customer Agreements. Customers prepaid $12.7bn in FY26. Longer contracts with price floors would make revenue far less cyclical than it has been.
 - The industry is disciplined this time. With only three DRAM makers and new fabs taking years, the supply response could be slower than in past cycles.
-- My discount rate is high. At a 10% WACC the base case rises to $675, still below the price, and the bull case to $1,579, almost exactly the sell-side mean target of ~$1,560. So the Street's number looks like my bull case at a lower discount rate. How much of my conclusion rests on that one input is worth being clear about.
+- My discount rate is high. At a 10% WACC the base case rises to $706, still below the price, and the bull case to $1,654, a little above the sell-side mean target of ~$1,560. So the Street's number looks like my bull case at a lower discount rate. How much of my conclusion rests on that one input is worth being clear about.
 
 ## 6. Bear case (why I think it's expensive)
 

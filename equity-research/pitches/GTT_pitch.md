@@ -1,15 +1,29 @@
 # Stock Pitch: GTT, Gaztransport & Technigaz (Euronext Paris: GTT)
 
-Date: 2026-10-17, updated 2026-10-23 with the Q3 2026 activity update (§0)
+Date: 2026-10-17, updated 2026-10-23 with the Q3 2026 activity update (§0) and 2026-11-14 with a model revision
 Sector: Industrials / energy technology: membrane containment systems for LNG carriers and terminals
 Current Price: €205.00 (2026-10-23 close; €211.60 at the original 2026-10-16 close)
-View: Expensive. A great business, but the price needs more orders than management itself expects.
+View: Full price (expensive until the model revision of 2026-11-14). A great business, and the price still needs more orders than management itself expects, but not many more.
 Model: [`valuation/gtt/gtt_dcf.xlsx`](../../valuation/gtt)
 
 > §0 supersedes the figures in §1–§8 where they differ. Sections 1–8 are
 > kept as written on 2026-10-17 (H1 2026 data) for the record.
+> The model revision of 2026-11-14 supersedes the valuation figures in both.
 
 ---
+
+## Model revision (2026-11-14)
+
+I changed two things in the model so that it follows the same method as my other DCFs. Cash flows are now discounted at mid-year instead of at year-end. And the beta is the regression beta of 0.42 with the Blume adjustment (0.61), not the 0.9 I had set by hand. That takes the WACC from 9.6% to 8.1%, and it's the change that matters.
+
+| | Bear | Base | Bull |
+|---|---|---|---|
+| Value per share, revised | €75 | €160 | €219 |
+| Value per share, before | €66 | €129 | €172 |
+
+The weighted value (25/50/25) is €154. At €211.60 the price needs about 77 orders a year for nine years, and at €205 about 75. Before it was 96 and 93. In the Monte Carlo the median is €154 and 22% of runs are worth more than €212, up from 8.7%. The front-loading point in §0 still holds, with 52 orders a year now worth about €136.
+
+So I've changed the view from expensive to full price. The stock still trades above my base case, but by much less: the base case is 22% below €205, and before it was 37% below. The bull case now reaches the price. Where the sections below say the price needs a low discount rate and above-plan orders at the same time, that's no longer what the model says. At the new WACC it needs above-plan orders only. Sections 0–8 are kept as written, with the old discount rate.
 
 ## 0. Q3 2026 update (activity update of 2026-10-23)
 

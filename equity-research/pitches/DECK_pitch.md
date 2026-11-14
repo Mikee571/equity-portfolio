@@ -14,7 +14,7 @@ Model: [`valuation/deckers/deckers_dcf.xlsx`](../../valuation/deckers)
 
 > At $82 the market is paying for HOKA and UGG to stop growing for good, or for the operating margin to fall from 21.5% to 14%. Both brands are still growing, and the company is buying back 9% of itself a year.
 
-What the model says: at $82 the price sits on my fade case ($80), where the UGG cycle ends and HOKA slows to low single digits. The base case, which is consensus for FY2028 and a slow fade after that, is worth $118.
+What the model says: at $82 the price sits on my fade case ($83), where the UGG cycle ends and HOKA slows to low single digits. The base case, which is consensus for FY2028 and a slow fade after that, is worth $123.
 
 ## 2. Screening scorecard
 
@@ -49,16 +49,16 @@ Four scenarios that differ only in HOKA growth, UGG growth, margin and terminal 
 | HOKA CAGR FY27–36 | 9.4% | 6.3% | 3.3% | −0.6% |
 | UGG CAGR FY27–36 | 3.3% | 2.3% | −1.7% | −4.6% |
 | Margin FY36 | 24% | 21% | 17% | 13% |
-| Value per share | $156 | $118 | $80 | $54 |
-| vs price | +91% | +44% | −3% | −34% |
+| Value per share | $164 | $123 | $83 | $56 |
+| vs price | +99% | +50% | +1% | −31% |
 
-With my probabilities (20/45/25/10) the weighted value is $110, 34% above the price.
+With my probabilities (20/45/25/10) the weighted value is $115, 40% above the price.
 
 The reverse DCF:
 
-- Margin the price needs on the base revenue path: 13.9% from FY2028, against 21.5% underlying. The last time Deckers earned less than that was FY2018.
-- Perpetual FCF growth the price implies: −0.3%.
-- At today's margin, zero growth for both brands is worth $82. So is HOKA +4% with UGG shrinking 6–8% a year.
+- Margin the price needs on the base revenue path: 13.2% from FY2028, against 21.5% underlying. The last time Deckers earned less than that was FY2018.
+- Perpetual FCF growth the price implies: −0.8%.
+- At today's margin, zero growth for both brands is worth $85. HOKA +4% with UGG shrinking 8% a year is worth $84.
 
 On peers, Deckers trades at 10.4x forward earnings against a median of about 15x for footwear and apparel (Nike, On, Adidas, Asics, Birkenstock, Amer Sports, Crocs, Lululemon and others), with the second-highest operating margin in the group. The cheap peers are telling: Lululemon (12.6x) and Crocs (9.7x) are the other two "hot brands at a peak" stories. The market is applying the same discount to all three.
 
@@ -72,7 +72,7 @@ On peers, Deckers trades at 10.4x forward earnings against a median of about 15x
 ## 6. Bear case
 
 - UGG has done this before. In FY2015–17 it went out of fashion, and Deckers' operating income fell to zero in FY2017. Wholesale up and DTC down, as now, is how the last downturn started.
-- HOKA could become an ordinary running brand. On (+13.5%) and Asics (+36%) grew faster than HOKA in their last reported quarter, and the US promotions in Q2 are a warning. The bust case, with both brands shrinking, is worth $54.
+- HOKA could become an ordinary running brand. On (+13.5%) and Asics (+36%) grew faster than HOKA in their last reported quarter, and the US promotions in Q2 are a warning. The bust case, with both brands shrinking, is worth $56.
 - Tariffs. The underlying margin already includes them, but a further increase or a clawback of the refunds would take another point or two off.
 - Consumer spending. The CEO talks about "a challenging consumer environment". Both brands are discretionary and sold at premium prices.
 
@@ -90,7 +90,7 @@ On peers, Deckers trades at 10.4x forward earnings against a median of about 15x
 My call is cheap, not a sure thing. What I'm betting on is that the slowdown is the normal maturing of HOKA plus a flat-ish UGG, not the end of the cycle for both. These rules check that bet against the numbers each quarter.
 
 - Add if the price falls towards the bust case (~$55–65) and the quarterly numbers still look like the base case: HOKA growth of 5% or more and an underlying operating margin of 20% or more.
-- Trim if the price reaches the base case (~$118). From there, the upside depends on the bull case.
+- Trim if the price reaches the base case (~$123). From there, the upside depends on the bull case.
 - Exit if the thesis breaks, which means two quarters in a row of any of these: HOKA revenue down year on year, UGG down more than 5%, or an underlying operating margin below 18%. At that point the business is the fade case or worse, and the price would no longer be cheap.
 - Review after every quarterly release. The first real test is the December quarter, reported in late January.
 

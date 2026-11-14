@@ -26,7 +26,7 @@ FY2027 is the company's own guidance: $5.71bn of revenue and a ~23% operating ma
 
 A few choices that matter:
 
-- Timing. The fiscal year ends on 31 March. FY2028–36 cash flows are discounted to 31 March 2027, the second half of FY2027 is added there, and the total is discounted five months back to 30 October 2026. H2 matters, because it's when the UGG season turns inventory into cash: H1 FCF was −$47mm, the full year should be close to $1bn.
+- Timing. The fiscal year ends on 31 March. FY2028–36 cash flows are discounted at mid-year to 31 March 2027 and then five months back to 30 October 2026. The second half of FY2027 is discounted two and a half months, the middle of what's left of the year. H2 matters, because it's when the UGG season turns inventory into cash: H1 FCF was −$47mm, the full year should be close to $1bn.
 - Cash. Net cash is $1.21bn at 30 September, the seasonal low. There's no debt. I don't deduct lease liabilities ($540mm), because rent is already inside operating income.
 - No SBC adjustment this time. It's 0.8% of revenue and already in GAAP operating income, so unlike Adobe there's nothing to argue about.
 - Working capital is 8% of each extra dollar of revenue, the FY24–26 average. In the scenarios where revenue shrinks, it releases cash.
@@ -41,7 +41,7 @@ Before reading anything into the valuation I checked the near term. The base cas
 | UGG growth FY28 / FY32 / FY36 | 5% / 3% / 2% | 3% / 2% / 2% | −3% / −2% / 0% | −10% / −4% / 0% |
 | Operating margin FY36 | 24% | 21% | 17% | 13% |
 | Terminal growth | 3.5% | 3% | 2% | 1% |
-| Value per share | $156 | $118 | $80 | $54 |
+| Value per share | $164 | $123 | $83 | $56 |
 | Probability (mine) | 20% | 45% | 25% | 10% |
 
 - Bull: HOKA becomes a global top-three running brand and keeps compounding internationally. Margins go back above FY2025.
@@ -49,19 +49,19 @@ Before reading anything into the valuation I checked the near term. The base cas
 - Fade: the UGG cycle ends the way it did in FY2015–17, and HOKA loses share in the US to On and Asics. Margins go back to the FY22–23 level.
 - Bust: both brands go out of fashion at once. Margins fall towards where they were before HOKA.
 
-At $81.99 the weighted value is $110, 34% above the price.
+At $81.99 the weighted value is $115, 40% above the price.
 
 ## What the price implies
 
 The reverse DCF gives three ways to read $81.99:
 
-- On the base revenue path, the price needs a flat operating margin of 13.9% from FY2028, against 21.5% underlying today. That's lower than any year since FY2018.
-- As a perpetuity, it's FCF shrinking 0.3% a year forever at my WACC.
-- At today's margin, it's roughly zero growth for both brands, forever. The HOKA × UGG grid puts the price at about HOKA 0% and UGG 0%, or HOKA +4% with UGG falling 6–8% a year.
+- On the base revenue path, the price needs a flat operating margin of 13.2% from FY2028, against 21.5% underlying today. That's lower than any year since FY2018.
+- As a perpetuity, it's FCF shrinking 0.8% a year forever at my WACC.
+- At today's margin, it's roughly zero growth for both brands, forever. The HOKA × UGG grid puts the price at about HOKA 0% and UGG −1%, or HOKA +4% with UGG falling 8% a year.
 
 Between my scenarios, the price is almost exactly the fade case. In other words, the market is already paying for the UGG cycle to end and HOKA to slow to low single digits.
 
-The discount rate matters less here than for Adobe. With a beta of 1.07 and no debt, the WACC is 10.3%. At 12%, zero growth is still worth $72. At 2% growth it's worth $84, about the price.
+The discount rate matters less here than for Adobe. With a beta of 1.07 and no debt, the WACC is 10.3%. At 12%, zero growth is still worth $75. At 2% growth it's worth $88, a little above the price.
 
 ## Assumptions I'm least sure about
 
