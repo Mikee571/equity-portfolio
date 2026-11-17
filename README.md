@@ -60,7 +60,7 @@ The SQL uses CTEs, window functions (`ROW_NUMBER`, `NTILE`), conditional aggrega
 
 ## Systematic strategies
 
-I've tested 15 systematic ideas in 2026, each with the rule and the pass criterion written down first, realistic costs and out-of-sample data. None passed. [SYNTHESIS.md](SYNTHESIS.md) has the scorecard and what I took from it.
+I've tested more than 40 systematic ideas in 2026, each with the rule and the pass criterion written down first, realistic costs and out-of-sample data. One strategy passed, diversified trend following with futures, and it needs a far bigger account than a typical retail one; nothing improved on holding a global index fund after costs. [SYNTHESIS.md](SYNTHESIS.md) has the scorecard and what I took from it.
 
 - [`strategy-lab/`](strategy-lab): cointegrated pairs (with Kalman and Ornstein-Uhlenbeck variants), an ML direction predictor, commodity trend following, Fed-regime sector rotation and adding quality or trend sleeves to a 70/20/10 portfolio. Most are archived, each with a write-up of why.
 - [`research/realised-vol`](research/realised-vol): HAR-RV volatility forecasting and volatility targeting. The forecast is 22% better than a trailing average, and the strategy built on it performs exactly the same.
