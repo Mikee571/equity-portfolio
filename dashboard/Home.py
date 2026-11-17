@@ -28,8 +28,9 @@ with c1:
     st.page_link("pages/2_Screener.py", label="Open the screener")
 with c2:
     st.subheader("Strategy research")
-    st.markdown("Eleven systematic ideas tested with fixed criteria, costs and out-of-sample data. "
-                "None passed, and the page explains why.")
+    st.markdown("More than 40 systematic ideas tested with fixed criteria, costs and out-of-sample data. "
+                "One strategy passed, and it needs a far bigger account than a typical retail one. "
+                "The page explains why so little passes.")
     st.page_link("pages/3_Research.py", label="Open the research scorecard")
 
     st.subheader("SQL on SEC filings")
