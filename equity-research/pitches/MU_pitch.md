@@ -3,8 +3,33 @@
 Date: 2026-10-17 (price as of the 2026-10-16 close; fundamentals through FY2026, ended 2026-09-03)
 Sector: Semiconductors, memory (DRAM, HBM, NAND)
 Current Price: $878.84
-View: Expensive. The price only works if the memory cycle doesn't turn.
+View: Full price (since 2026-11-22, at $594.51). In October, at $878.84, it was Expensive: the price only worked if the memory cycle didn't turn.
 Model: [`valuation/micron/micron_dcf.xlsx`](../../valuation/micron)
+
+---
+
+## 0. Update after the November sell-off (2026-11-22)
+
+The stock closed at $594.51 on 20 November, 32% below the $878.84 I valued it at. Micron hasn't filed anything since the 10-K, so this is a re-run of the same model with new market inputs. The next real data point is Q1 FY27 results on 17 December (Yahoo's date, earlier than the late December I had assumed).
+
+Most of the fall is the market. From 16 October to 20 November the S&P 500 fell 9.6% and the semiconductor ETF (SOXX) 25%. With a beta of 2.4, the S&P move alone accounts for about 23 of Micron's 32 points. The week of 16–20 November added a NAND worry on top: GF Securities now expects NAND prices to be flat in Q1 2027 and then fall for three quarters, with supply bits growing 28% in 2027. NAND was 24% of FY26 revenue ($31.8bn of $133.2bn in the 10-K). TrendForce, as reported second-hand, still has DRAM contract prices rising every quarter through 2027 and HBM prices up sharply. Analysts haven't changed their numbers either: consensus revenue is $276.0bn for FY27 and $320.8bn for FY28, against the $275.5bn and $318.9bn my scenarios are anchored to.
+
+So I left the scenarios alone and re-ran the model (`update_2026_11.py`) with the new price, the 10-year yield at 4.91% and Yahoo's beta, which has risen from 2.23 to 2.40. The WACC goes from 14.2% to 14.5%.
+
+| | Bear | Base | Bull |
+|---|---|---|---|
+| Value per share | $216 | $534 | $1,090 |
+| vs $594.51 | −64% | −10% | +83% |
+
+Weighted 30/50/20, that's $550, 8% below the price. In October it was $560 and 36% below. The value moved $10 and the price $284.
+
+The reverse DCF moved the most. With base-case revenue, the price now needs an operating margin of 48% from FY29, against 86% in October. That's about the FY18 peak (49%), still far above the FY15–25 average of 17.5%, but it's no longer a margin Micron has never earned. The price now sits 11% of the way from my base case to my bull case; in October it was 58%. In the Monte Carlo, 35% of the 20,000 runs are now worth more than the price; in October it was 7.5%.
+
+The NAND note hardly moves my numbers. If FY28 NAND prices come in 10–30% below plan, the base case loses $5–14 a share for a one-year dip and $11–33 if the lower level stays. It matters a lot more for SanDisk, down 51% since mid-October. For Micron the question is still when DRAM turns.
+
+So I've changed the view from Expensive to Full price. At 8% below the price the gap is about the same as for GTT and JPMorgan, which I call full price too. The price no longer assumes that memory has stopped being cyclical. It does still assume a better cycle than the old ones, with margins settling near the FY18 peak rather than the 17.5% average. The sections below are the October pitch as written.
+
+What I'll look at on 17 December: Q1 revenue against the $61.5bn guidance and $61.7bn consensus, Q2 guidance against $66.9bn consensus, how much of the quarter was NAND and what they say about NAND prices, whether FY27 capex goes up again, and any new customer prepayments.
 
 ---
 
@@ -61,7 +86,7 @@ The peers look the same: SK hynix trades at 2.7x and Samsung at 3.0x forward ear
 - The industry is disciplined this time. With only three DRAM makers and new fabs taking years, the supply response could be slower than in past cycles.
 - My discount rate is high. At a 10% WACC the base case rises to $706, still below the price, and the bull case to $1,654, a little above the sell-side mean target of ~$1,560. So the Street's number looks like my bull case at a lower discount rate. How much of my conclusion rests on that one input is worth being clear about.
 
-## 6. Bear case (why I think it's expensive)
+## 6. Bear case (why I called it expensive in October)
 
 - Every memory peak has been followed by a bust. Margins went 49% → 14% (FY18 → FY20) and 31% → −37% (FY22 → FY23).
 - Capacity is coming. Micron is raising capex (net $27.4bn in FY26, more planned), and so are SK hynix and Samsung. High prices fund the supply that ends them.

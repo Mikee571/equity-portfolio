@@ -33,7 +33,8 @@ with tab_mu:
     st.markdown(
         "**The question:** at ~5x forward earnings (4x on FY28), is Micron cheap after a record year, or is the market right to "
         "distrust peak memory earnings? All scenarios start from consensus for FY27-28 and differ in what happens "
-        "after. **My view: expensive.** Full pitch: `equity-research/pitches/MU_pitch.md`; Excel model: `valuation/micron/`."
+        "after. **My view: full price** since the November sell-off (expensive in October at $879; the model below keeps "
+        "the October inputs). Full pitch: `equity-research/pitches/MU_pitch.md`; Excel model: `valuation/micron/`."
     )
     left, right = st.columns([1, 2.2])
     with left:

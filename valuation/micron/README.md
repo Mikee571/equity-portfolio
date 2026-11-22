@@ -4,6 +4,8 @@ October 2026. Micron had just reported a year nobody would have modelled two yea
 
 The write-up with my view is the [pitch](../../equity-research/pitches/MU_pitch.md). This folder holds the model.
 
+Update, 22 November 2026: after a 32% fall in the share price I re-ran the model with the new price ($594.51), 10-year yield (4.91%) and beta (2.40), leaving the scenarios alone because consensus hasn't moved. The values are $216 / $534 / $1,090 and the weighted value is $550, 8% below the price. The reverse DCF now needs a 48% margin from FY29 instead of 86%. `update_2026_11.py` reproduces it, with a NAND price sensitivity; the pitch has the details. The rest of this page describes the October model as built.
+
 ## Files
 
 - `micron_dcf.xlsx`: the model, all live formulas (465 of them). Blue cells are inputs, yellow ones are the key assumptions. Sheets:
@@ -15,6 +17,7 @@ The write-up with my view is the [pitch](../../equity-research/pitches/MU_pitch.
   - Comps: six memory and storage peers.
 - `build_model.py`: writes the workbook from `data/mu_annual_raw.csv` (pulled from the SEC XBRL API) and the inputs listed in the script. Open the result in Excel to calculate it.
 - `check_model.py`: after recalculating, checks every formula for errors and prints the key outputs.
+- `update_2026_11.py`: the November re-run, using the same model code as the dashboard (`../models.py`).
 
 ## How I approached it
 
